@@ -436,6 +436,7 @@ const en = {
   "study.tajweed": "Tajweed colours",
   "study.legend": "Colour guide",
   "study.error": "Could not load. Check your internet and try again.",
+  "footer.credit": "Built by Ghulam Naseeruddin to serve the Ummah and humanity, and to guide them to the straight path.",
 } as const;
 
 export type TKey = keyof typeof en;
@@ -858,6 +859,7 @@ const ur: Record<TKey, string> = {
   "study.tajweed": "تجوید کے رنگ",
   "study.legend": "رنگوں کی رہنمائی",
   "study.error": "لوڈ نہ ہو سکا۔ انٹرنیٹ دیکھ کر دوبارہ کوشش کریں۔",
+  "footer.credit": "غلام نصیر الدین کی طرف سے امت اور انسانیت کی خدمت اور انہیں صراطِ مستقیم کی طرف رہنمائی کے لیے بنائی گئی۔",
 };
 
 export const dictionary: Record<Lang, Record<TKey, string>> = { en, ur };

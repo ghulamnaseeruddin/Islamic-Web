@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteFooter } from "@/components/SiteFooter";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
@@ -42,7 +43,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body>
-        <I18nProvider initialLang={lang}>{children}</I18nProvider>
+       <I18nProvider initialLang={lang}>
+       {children}
+       <SiteFooter />
+       </I18nProvider>
       </body>
     </html>
   );

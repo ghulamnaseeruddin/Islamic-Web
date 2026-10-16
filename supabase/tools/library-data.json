@@ -1,0 +1,2405 @@
+{
+ "sections": [
+  {
+   "slug": "quran",
+   "parent": null,
+   "title": "Al Qur'an",
+   "title_ur": "القرآن",
+   "sort": 1,
+   "app_path": "/quran",
+   "note": "Read the Qur'an online inside the app. The PDFs below are the original library books.",
+   "is_hidden": false,
+   "books": []
+  },
+  {
+   "slug": "quran-translation",
+   "parent": "quran",
+   "title": "Qur'an Translation PDF",
+   "title_ur": "قرآن ترجمہ (PDF)",
+   "sort": 1,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Jamal-ul-Qur'an",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/quran/jamal_quran"
+      }
+     ]
+    },
+    {
+     "title": "Qur'an Word to Word",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/quran/quran_translation"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "quran-tafseer",
+   "parent": "quran",
+   "title": "Qur'an Tafseer PDF",
+   "title_ur": "قرآن تفسیر (PDF)",
+   "sort": 2,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Tafseer Ibne Kaseer",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/quran/tafseer_ibne_kaseer"
+      }
+     ]
+    },
+    {
+     "title": "Tafheem-ul-Qur'an",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/quran/tafheem_quran"
+      }
+     ]
+    },
+    {
+     "title": "Bayan-ul-Qur'an",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/quran/bayan_ul_quran"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "hadith",
+   "parent": null,
+   "title": "Al Hadith",
+   "title_ur": "الحدیث",
+   "sort": 2,
+   "app_path": "/hadith",
+   "note": "Read Hadith online inside the app (six books). The original PDF pages are linked below.",
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Sahih Bukhari",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/bukhari"
+      }
+     ],
+     "app_path": "/hadith/bukhari"
+    },
+    {
+     "title": "Sahih Muslim",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/muslim"
+      }
+     ],
+     "app_path": "/hadith/muslim"
+    },
+    {
+     "title": "Jamia Tirmizi",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/tirmazi"
+      }
+     ],
+     "app_path": "/hadith/tirmizi"
+    },
+    {
+     "title": "Sunan Abu Dawood",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/abu_dawood"
+      }
+     ],
+     "app_path": "/hadith/abu-dawood"
+    },
+    {
+     "title": "Sunan Ibn-e-Majah",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/ibn_e_maja"
+      }
+     ],
+     "app_path": "/hadith/ibn-e-majah"
+    },
+    {
+     "title": "Sunan Nisai",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/nasai"
+      }
+     ],
+     "app_path": "/hadith/nisai"
+    },
+    {
+     "title": "Mishkat-ul-Masabeh",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/mishkat"
+      }
+     ],
+     "app_path": null
+    },
+    {
+     "title": "Musnad Ahmad",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/musnad_ahmed"
+      }
+     ],
+     "app_path": null
+    },
+    {
+     "title": "Al Silsila Sahiha",
+     "files": [
+      {
+       "label": "PDF page",
+       "url": "https://ahlesunnatpak.com/research-paper/download-pdf/sahiha"
+      }
+     ],
+     "app_path": null
+    }
+   ]
+  },
+  {
+   "slug": "hadith-others",
+   "parent": "hadith",
+   "title": "Other Hadith Books",
+   "title_ur": "دیگر کتب حدیث",
+   "sort": 1,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Sahih Bukhari (Dawood Raaz)",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-5.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-6.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-7.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Bukhari-8.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahih Bukhari (Darussalam)",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-5.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Bukhari-Jilad-6.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahih Muslim (Waheed uz Zaman)",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim5.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Muslim6.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahih Muslim (Darussalam)",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Muslim-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Muslim-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Muslim-3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Muslim-4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih-Muslim-5.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Shamaail Tirmidhi ImamTirmidhi",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/books/ShamaailTirmidhi-ImamTirmidhi/ShamaailTirmidhi-ImamTirmidhi-IntroAndPage1-223.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/books/ShamaailTirmidhi-ImamTirmidhi/ShamaailTirmidhi-ImamTirmidhi-IntroAndPage224-458.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Jamia Tirmazi Mutarjam",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Jamia-Tirmazi-Mutarjam-(-Tehqiq-w-Takhreej-Shuda-Audition-)-1-URDU.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Jamia-Tirmazi-Mutarjam-(-Tehqiq-w-Takhreej-Shuda-Audition-)-2-URDU.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahih Ibn Hibban",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%201%20LRes.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%202%20LRes.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%203%20LRes.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%204%20LRes.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%205%20LRes.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%206%20LRes.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%207%20LRes.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/Sahih%20Ibn%20Hibban%20Jild%208%20LRes.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musannaf Ibn e Abi Shaibah",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%206.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%207.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%208.pdf"
+      },
+      {
+       "label": "Part 9",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%209.pdf"
+      },
+      {
+       "label": "Part 10",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%2010.pdf"
+      },
+      {
+       "label": "Part 11",
+       "url": "https://ahlesunnatpak.com/uploads/musannaf%20ibn%20abi%20shaibah%2011.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musannaf Abdul Razzaq",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%206.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/JILD%207.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musnad Ahmad",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%206.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%207.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%208.pdf"
+      },
+      {
+       "label": "Part 9",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%209.pdf"
+      },
+      {
+       "label": "Part 10",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%2010.pdf"
+      },
+      {
+       "label": "Part 11",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%2011.pdf"
+      },
+      {
+       "label": "Part 12",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%2012.pdf"
+      },
+      {
+       "label": "Part 13",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%2013.pdf"
+      },
+      {
+       "label": "Part 14",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad%20Ahmad%2014.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musnad Ishaq",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Ishaaq-Bin-Rahviyah.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musnad Abu YaAla AlMusali",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Abu-YaAla-AlMusali_Jild_1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Abu-YaAla-AlMusali_Jild_2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Abu-YaAla-AlMusali_Jild_3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Abu-YaAla-AlMusali_Jild_4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Musnad-Abu-YaAla-AlMusali_Jild_5.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fazail e Sahaba (Ahmed Bin Hanbal)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Fazail%20e%20Sahaba%20By%20Imam%20Ahmed%20Bin%20Hanbal.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fath-ul-Bari",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-5.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-6.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-7.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-8.pdf"
+      },
+      {
+       "label": "Part 9",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-9.pdf"
+      },
+      {
+       "label": "Part 10",
+       "url": "https://ahlesunnatpak.com/uploads/Faiz-ul-bari-tarjuma-fathul-bari-10.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Dalail-un-Nubowah",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%206.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Dalail-Un-Nubowah-%207.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Adab-ul-Mufrid",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Al-Adab-ul-Mufrid.PDF"
+      }
+     ]
+    },
+    {
+     "title": "Anwarul-Saheefa(Zubar Ali Zai Hafizaullah)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/books/Anwarul-Saheefa(Zubar%20Ali%20Zai%20Hafizaullah)/Anwarul-Saheefa(Zubar%20Ali%20Zai%20Hafizaullah).pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mu'ata-Imam-Malik-Urdu-(Online-Edition)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/books/Mu'att-Imam-Malik-Urdu-(Online-Edition)/Mu'att-Imam-Malik-Urdu-(Online-Edition).pdf"
+      }
+     ]
+    },
+    {
+     "title": "Musnad-Imam-Shafi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/books/Musnad-Imam-Shafi/Musnad-Imam-Shafi.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunan Darmi",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/books/Sunan+darmi/Sunan+darmi+1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/books/Sunan+darmi/Sunan+darmi+2.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Al Lu Loo Wal Marjaan",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Al-Lu-Loo-Wal-Marjaan-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Al-Lu-Loo-Wal-Marjaan-2.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Al Mu'jam al Awsat",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%206.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/al%20mu'jam%20al%20awsat%20Jild%207.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Moajamul Kabeer Tibrani",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%204.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%205.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Moajamul%20kabeer%20tabrani%206.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Moajam ul Sagheer Tibrani",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Muajam-e-Sagheer.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mota Imam Malik",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Mota%20Imam%20Malik%20By%20Allama%20Waheed%20uz%20Zaman.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahih Al-Targheeb",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Al-Targheeb-Wal-Tarheeb-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Al-Targheeb-Wal-Tarheeb-2.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mustadrak Hakim",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+1+(Low+Quality).pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+2+(Low+Quality).pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+3+(Low+Quality).pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+4+(Low+Quality).pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+5+(Low+Quality).pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Jild+6+(Low+Quality).pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sahi Ibne Khuzaima",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Ibne-Khuzaima-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Ibne-Khuzaima-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Ibne-Khuzaima-3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sahi-Ibne-Khuzaima4.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sharah Ma'ani al Asaar",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sharah%20Maani%20Ul%20Aasaar%20Urdu%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sharah%20Maani%20Ul%20Aasaar%20Urdu%202.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sharah%20Maani%20Ul%20Aasaar%20Urdu%203.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sharah%20Maani%20Ul%20Aasaar%20Urdu%204.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Shuab Al Imaan",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol3.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol4.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol5.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol6.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/ShuabUlImanVol7.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunan Al-Kubra Beyhaqi",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-01.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-02.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-03.pdf"
+      },
+      {
+       "label": "Part 4",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-04.pdf"
+      },
+      {
+       "label": "Part 5",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-05.pdf"
+      },
+      {
+       "label": "Part 6",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-06.pdf"
+      },
+      {
+       "label": "Part 7",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-07.pdf"
+      },
+      {
+       "label": "Part 8",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-08.pdf"
+      },
+      {
+       "label": "Part 9",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-09.pdf"
+      },
+      {
+       "label": "Part 10",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-10.pdf"
+      },
+      {
+       "label": "Part 11",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-11.pdf"
+      },
+      {
+       "label": "Part 12",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Al-Kubra-Bayhaqi-Urdu-Vol-12.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunan Dar Al-Qutni",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Dar-Qutni%20(%20Hafiz%20Faiz%20ullah%20Nasir%20)-1.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Dar-Qutni%20(%20Hafiz%20Faiz%20ullah%20Nasir%20)-2.pdf"
+      },
+      {
+       "label": "Part 3",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan-Dar-Qutni%20(%20Hafiz%20Faiz%20ullah%20Nasir%20)-3.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunan Darmi (2)",
+     "files": [
+      {
+       "label": "Part 1",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan%20darmi%201.pdf"
+      },
+      {
+       "label": "Part 2",
+       "url": "https://ahlesunnatpak.com/uploads/Sunan%20darmi%202.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mouzuat-e-Kabeer By Mulla Ali Qari",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Mouzuat-e-Kabeer%20By%20Mulla%20Ali%20Qari.PDF.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Nahjul Balagah Urdu",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Nahjul-Balagah-Urdu.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "research",
+   "parent": null,
+   "title": "Research Papers & Azkaar",
+   "title_ur": "تحقیقی مقالات و اذکار",
+   "sort": 3,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": []
+  },
+  {
+   "slug": "research-papers",
+   "parent": "research",
+   "title": "Research Papers",
+   "title_ur": "تحقیقی مقالات",
+   "sort": 1,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "GREEN Card : Farad NAMAZ kay ba’ad Saheh SUNNAT WAZA’IF-O-AZKAR",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/GREEN_Card_Farad_NAMAZ_kay_ba%E2%80%99ad_Saheh_SUNNAT_WAZA%E2%80%99IF-o-AZKAR_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mas’alah-e-TAQDEER say motalliq QUR’AN-e-HAKEEM say 200-AYAAT",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Masalah-e-TAQDEER_say_motalliq_QURAN-e-HAKEEM_say_200-AYAAT_Especially_Discussed_in_4-LECTURES_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Haqeeqat-o-Iqsaam-e-Shirk",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Haqeeqat-o-Iqsaam-e-Shirk_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Namaz-e-WITER",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz-e-WITER_(by_Ghulam_Mustafa_Zaheer_Amanpuri)_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Imam Abu Haneefah r.a ki Ijtehadi GALATIYON say motalliq AL-MUSANNAF",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Imam_Abu_Haneefah_r_a_ki_Ijtehadi_GALATIYON_say_motalliq_AL-MUSANNAF_Arabic_+_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Ibne Tamiah (رحمہ اللہ) kay Kuch Galat Aqa’id",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Ibne_Tamiah_(%D8%B1%D8%AD%D9%85%DB%81_%D8%A7%D9%84%D9%84%DB%81)_kay_Kuch_Galat_Aqa%E2%80%99id_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Saheh MUSLIM Shareef Ka Muqaddamah",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Saheh_MUSLIM_Shareef_Ka_Muqaddamah_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Najadi (Shaitan ka Seeng) Dar-Asal Kon Hain ?",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Najadi_(Shaitan_ka_Seeng)_Dar-Asal_Kon_Hain_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Shah WaliULLAH Dahalvi (رحمہ اللہ) ka Aham Ikhtilafi Masa’il say Mutaliq Mo’aqif",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Shah_WaliULLAH_Dahalvi_(%D8%B1%D8%AD%D9%85%DB%81_%D8%A7%D9%84%D9%84%DB%81)_ka_Aham_Ikhtilafi_Masa%E2%80%99il_say_Mutaliq_Mo%E2%80%99aqif_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "12 Rabi-ul-Awwal Rasool Allah (ﷺ) ka Youm-e-Wafat Nahi Hai !",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/12_Rabi-ul-Awwal_Rasool_Allah_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Saheh ISLAMI AQA’ID",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Saheh_ISLAMI_AQA%E2%80%99ID_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Qur’an-O-Sunnat aur Fiqh Islami ki Chand Bunyadi aur Aham Istalahaat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Qur%E2%80%99an-o-Sunnat_aur_Fiqh_Islami_ki_Chand_Bunyadi_aur_Aham_Istalahaat_-_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "HISN-ul-MUSLIM",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/HISN-ul-MUSLIM_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Jado-Tona, Jinnaat-O-Taweezaat, Nazr-e-Badd, aur Amraaz-O-Hadsaat ka 5-Saheh SUNNAT WAZA’IF say ELAJ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Jado-Tona,_Jinnaat-o-Taweezaat,_Nazr-e-Badd,_aur_Amraaz-o-Hadsaat_ka_5-Saheh_SUNNAT_WAZA%E2%80%99IF_say_ELAJ_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "RasoolULLAH (ﷺ) ki Aakhri Wasiyattain",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/RasoolULLAH_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "BLUE Card : SUBOH-O-SHAM kay Saheh SUNNAT WAZA’IF-O-AZKAR",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/BLUE_Card_SUBOH-o-SHAM_kay_Saheh_SUNNAT_WAZA%E2%80%99IF-o-AZKAR_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Complete Namaz-e-Muhammadi (ﷺ) (From Saheh-ul-Asnad Ahadith)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Complete_Namaz-e-Muhammadi_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Qur’an-e-Hakeem k 10 Bunyadi Ahkaam aur Allah k Auliya ki 12 Siffat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/P7_(New-URDU)_QURAN-ki-10-Commands%20-ALLAH-kay-Saheh-WALION-ki-12-Sifaat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Qabron Se Faiz K Aqiday Ka Tahqeeqi Jaiza",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Qabron_Se_Faiz_K_Aqiday_Ka_Tahqeeqi_Jaiza_-Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sayyidina Maola ALI (r.a) kay KHASA’IS say motalliq Sunan NISAI Al-Kubra ka Complete Chapter",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Sayyidina_Maola_ALI_(r_a)_kay_KHASA%E2%80%99IS_say_motalliq_Sunan_NISAI_Al-Kubra_ka_Complete_Chapter_-Arabic_+_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Jang-e-JAMEL, Jang-e-SIFFEEN aur Jang-e-NAHERWAN say motalliq 187-AHADITH-O-ASAAR",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Jang-e-JAMEL,_Jang-e-SIFFEEN_aur_Jang-e-NAHERWAN_say_motalliq_187-AHADITH-o-ASAAR_-_Arabic+Urdu.PDF"
+      }
+     ]
+    },
+    {
+     "title": "Waqia-e-KARBLA ka HAQEEQI Pas-Manzer 72-Saheh-ul-Isnad AHADITH ki Roshani Main",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Waqia-e-KARBLA_ka_HAQEEQI_Pas-Manzer_72-Saheh-ul-Isnad_AHADITH_ki_Roshani_Main_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "(New Revised) Rafziyat, Nasbiyat aur Yazeediyat ka Tahqeeqi Jaizah",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/(New_Revised)_Rafziyat,_Nasbiyat_aur_Yazeediyat_ka_Tahqeeqi_Jaizah_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Imam-ul-Ambiya (ﷺ) ki Dawat-e-Qur’an",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Imam-ul-Ambiya_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "DUAA Siraf ALLAH Hee Say",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/DUAA_Siraf_ALLAH_Hee_Say_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "32-Ghair Islami Nazriyat Ba-Muqabilah Saheh Islami Aqa’id",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/32-Ghair_Islami_Nazriyat_Ba-Muqabilah_-_Urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Andha Dhund Pairvi Ka Anjam",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Andha_Dhund_Pairvi_Ka_Anjam_-_Urdu.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "sunnat-azkaar",
+   "parent": "research",
+   "title": "Sunnat Azkaar",
+   "title_ur": "سنت اذکار",
+   "sort": 2,
+   "app_path": "/azkaar",
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Sunnat Azkaar 1: BLUE Card : SUBOH-o-SHAM kay Saheh SUNNAT WAZA'IF-o-AZKAR",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/BLUE_Card_SUBOH-o-SHAM_kay_Saheh_SUNNAT_WAZA'IF-o-AZKAR_urdu.pdf"
+      },
+      {
+       "label": "Hindi",
+       "url": "https://ahlesunnatpak.com/uploads/BLUE_Card_SUBOH-o-SHAM_kay_Saheh_SUNNAT_WAZA'IF-o-AZKAR_hindi.pdf"
+      },
+      {
+       "label": "English",
+       "url": "https://ahlesunnatpak.com/uploads/BLUE_Card_SUBOH-o-SHAM_kay_Saheh_SUNNAT_WAZA'IF-o-AZKAR_english.pdf"
+      },
+      {
+       "label": "Bangla",
+       "url": "https://ahlesunnatpak.com/uploads/BLUE_Card_SUBOH-o-SHAM_kay_Saheh_SUNNAT_WAZA'IF-o-AZKAR_bangla.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Azkaar 2: GREEN Card : Farad NAMAZ kay ba'ad Saheh SUNNAT WAZA'IF-o-AZKAR",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/GREEN_Card_Farad_NAMAZ_kay_ba'ad_Saheh_SUNNAT_WAZA'IF-o-AZKAR_-_Urdu.pdf"
+      },
+      {
+       "label": "Hindi",
+       "url": "https://ahlesunnatpak.com/uploads/GREEN_Card_Farad_NAMAZ_kay_ba'ad_Saheh_SUNNAT_WAZA'IF-o-AZKAR_-_Hindi.pdf"
+      },
+      {
+       "label": "English",
+       "url": "https://ahlesunnatpak.com/uploads/GREEN_Card_Farad_NAMAZ_kay_ba'ad_Saheh_SUNNAT_WAZA'IF-o-AZKAR_-_English.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Azkaar 3: Hisn-ul-Muslim : By Imam Saeed Al-Qahtani",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Hisn-ul-Muslim_By_Imam_Saeed_Al-Qahtani_urdu.pdf"
+      },
+      {
+       "label": "Hindi",
+       "url": "https://ahlesunnatpak.com/uploads/Hisn-ul-Muslim_By_Imam_Saeed_Al-Qahtani_hindi.pdf"
+      },
+      {
+       "label": "English",
+       "url": "https://ahlesunnatpak.com/uploads/Hisn-ul-Muslim_By_Imam_Saeed_Al-Qahtani_english.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Azkaar 4: Jado-Tona, Jinnaat-o-Taweezaat, Nazr-e-Badd, aur Amraaz-o-Hadsaat ka 5-Saheh SUNNAT WAZA'IF say ELAJ",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Jado-Tona,_Jinnaat-o-Taweezaat,_Nazr-e-Badd,_aur_Amraaz-o-Hadsaat_ka_5-Saheh_SUNNAT_WAZA'IF_say_ELAJ_-_Urdu.pdf"
+      },
+      {
+       "label": "Hindi",
+       "url": "https://ahlesunnatpak.com/uploads/Jado-Tona,_Jinnaat-o-Taweezaat,_Nazr-e-Badd,_aur_Amraaz-o-Hadsaat_ka_5-Saheh_SUNNAT_WAZA'IF_say_ELAJ_-_Hindi.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Azkaar 5: ORANGE Card : Jado Tona, Jinnat, Taweezat, Wabai Amraz aur Qudarti Hadsat say Bacho kay liay 5-Saheh Sunnat Wazaif",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/ORANGE_Card_Jado_Tona,_Jinnat,_Taweezat,_Wabai_Amraz_aur_Qudarti_Hadsat_say_Bacho_kay_liay_5-Saheh_Sunnat_Wazaif_urdu.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "sunnat-tareeqay",
+   "parent": "research",
+   "title": "Sunnat Tareeqay",
+   "title_ur": "سنت طریقے",
+   "sort": 3,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Sunnat Tareeqay 1: طہارت نماز کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Taharat-o-Namaz ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz_e_Nabavi_(Darussalam)_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 2: وضو کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Wazu ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Wazu_ka_Sunnat_Tareeqah_aur_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 3: نماز کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Namaz ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz_ka_Sunnat_Tareeqah_aur_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 4: نماز جنازہ کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Namaz-e-Janazah ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz-e-Janazah_ka_Sunnat_Tareeqah_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 5: حج کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Hajj ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Saheh_HAJJ.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 6: عمرہ کا سنت طریقہ اور صحیح فقہی احکام و مسائل / Umrah ka Sunnat Tareeqah aur Saheh Fiqahi Ahkam-o-Masail (Urdu)",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/Saheh_UMRAH.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sunnat Tareeqay 7: حصن المسلم / HISN-ul-MUSLIM",
+     "files": [
+      {
+       "label": "Urdu",
+       "url": "https://ahlesunnatpak.com/uploads/HISN-ul-MUSLIM_urdu.pdf"
+      },
+      {
+       "label": "Hindi",
+       "url": "https://ahlesunnatpak.com/uploads/HISN-ul-MUSLIM_hindi.pdf"
+      },
+      {
+       "label": "English",
+       "url": "https://ahlesunnatpak.com/uploads/HISN-ul-MUSLIM_english.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "other",
+   "parent": null,
+   "title": "Other Books",
+   "title_ur": "دیگر کتب",
+   "sort": 4,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": []
+  },
+  {
+   "slug": "islamic-books",
+   "parent": "other",
+   "title": "Islamic Books",
+   "title_ur": "اسلامی کتب",
+   "sort": 1,
+   "app_path": null,
+   "note": null,
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "QIYAM-e-RAMZAN ki Rak'aton ki Ta'dad ka Tahqeeqi Jaiza",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/QIYAM-e-RAMZAN_ki_Rakaton_ki_Tadad_ka_Tahqeeqi_Jaiza_Book_no_15.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Rasool-e-Karim Alaihissalam Ke Mamulaat-e-Shab-o-Roz (Amal-ul-Youm Wal-Lailah) - Imam Nisai",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Rasool-e-Akrim-K-Mamolat-Shab-o-ROZ.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Wafat-Un-Nabi Alaihissalam - Imam Nisai r.a",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Wafat-Un-Nabi-Alaihissalam-By-Imam-Nisai.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fazail-e-Quran - Imam Nisai R.A",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Fazail-e-Quran-By-Imam-Nisai.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fazail-e-Sehaba - Imam Nisai R.A",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Fazail-e-Sehaba-By-Imam-Nisai.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Khassais-e-Ali - Imam Nisai r.a",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Khassais-e-Ali-By-Imam-Nisai.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Masalah khatam-e-nubowat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/masalah-khatamenabuwat-1589211441.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mukhtasar Seerat-ul-Rasool",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/mukhtasar-seerat-ul-rasool-1587367898.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Pakistan k deeni masalik",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/books/Pakistan-ke-Deeni-Masalik.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Quranic Arabic Grammar Course",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Quranic_Arabic_Grammar_Course1_Book_no_20.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Jab ZINDAGI Shuru ho gi (Abu Yahya)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Jab_ZINDAGI_Shuru_ho_gi_A_LIFE_Changing_NOVEL_in_URDU_about_QIYAMAT_(By_Abu_Yahya)_Book_no_19.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Noor-ul-Aineen",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Noor-ul-Aineen_Book_no_18.pdf"
+      }
+     ]
+    },
+    {
+     "title": "99-NAMES of ALLAH Ta'aala",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Allah_Tala_Ke_99_Naam_(Hindi)_Book_no_17.pdf"
+      }
+     ]
+    },
+    {
+     "title": "DEEN Main TAQLEED Ka Mas'alah",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/DEEN_Main_TAQLEED_Ka_Masalah_Book_no_16.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Complete Namaz-e-Nabwi (ﷺ) From Saheh-ul-Isnad AHADITH",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Complete_NAMAZ-e-NABAWI_(alaihimussalam)_From_Saheh-ul-Isnad_AHADITH_(By_Sheikh_Zubair_Ali_Zai_r_a)_Book_no_1.pdf"
+      }
+     ]
+    },
+    {
+     "title": "MUSLIMS peh QUR'AN-e-Majeed kay 5-Huqooq",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/BU-1-01_Musalmanon_per_Quran_ke_haqooq_Book_no_14.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Kainaat Say Khaliq-e-Kainaat Tak",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Creation-to-CREATOR-(Kainat-Say-KHALIQ-e-Kainat-Tak)_Book_no_13.pdf"
+      }
+     ]
+    },
+    {
+     "title": "FAZA'IL-e-DUROOD-o-SALAM",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/FAZAIL-e-DUROOD-o-SALAM_Book_no_12.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Khalafat-o-Malookiyat - Maolana Sayyid Maodoodi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Khalafat-o-Malookiyat-By-Maolana-Sayyid-MAODOODI_Book_no_11.pdf"
+      }
+     ]
+    },
+    {
+     "title": "YAZEED aur Qustuntuniyah ki BASHARAT - Dr. Abu Jabir Damanwi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/YAZEED-aur-Qustuntuniyah-By-DR-Abu-Jabir-DAMANWI_Book_no_10.pdf"
+      }
+     ]
+    },
+    {
+     "title": "YAZEED ki Haqeeqat of Imam Ibne Jaozi رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/YAZEED-ki-Shakhsiyat(By-Mohaddis-Ibn-e-JAOZI-r_a)_Book_no_9.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Hisn-ul-Muslim of Imam Saeed Al-Qahtani رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/HISN-ul-MUSLIM_Book_no_8.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Juzz Al-Qirah of Imam Bukhari رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Juzz_Al-Qiraat_by_Imam_Bukhari_r_a_Book_no_7.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Juzz Rafa-ul-Yadayin of Imam Bukhari رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Juzz_Rafa_ul_Yadain_Book_no_6.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Hadiat-ul-Muslimeen (40-Ahadith on MASA'IL-e-NAMAZ) - Sheikh Hafiz Zubair Ali Zai رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Hadiat-ul-Muslimeen-40-Ahadith-on-NAMAZ-related-MASAIL-By-Sheikh-Hafiz-Zubair-Ali-Zai-r_a_Book_no_5.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Complete Namaz-e-Nabwi (صلى الله عليه وآله وسلم) - Compiled By Amanat Ali Mirza Jhelumi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/namaz-muhammadi-ahadith_Book_no_4.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Complete Namaz-e-Nabwi (ﷺ) - Muhammad Nasir-ud-Deen Albani رحمہ اللہ",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz_e_Nabavi_(Albani)_Book_no_3.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Complete Namaz-e-Nabawi (ﷺ) - Dr. Shafiq-ur-Rahman حفظہ اللہ (Printed by Darussalam Publications)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Namaz_e_Nabavi_(Darussalam)_Book_no_2.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gustakhana",
+   "parent": "other",
+   "title": "Gustakhana Ibaraat",
+   "title_ur": "گستاخانہ عبارات",
+   "sort": 2,
+   "app_path": null,
+   "note": "Books collected in the original library for the study of objectionable passages. An admin can hide this whole section from Admin > Library.",
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "Kashf al Mahjoob",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Kashf-al-Mahjoob-Urdu-Translation.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Malfoozat e Hakeem ul Ummat (30 volumes)",
+     "files": [
+      {
+       "label": "Vol 01",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_01_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 02",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_02_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 03",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_03_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 04",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_04_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 05",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_05_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 06",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_06_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 07",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_07_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 08",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_08_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 09",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_09_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 10",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_10_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 11",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_11_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 12",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_12_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 13",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_13_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 14",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_14_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 15",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_15_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 16",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_16_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 17",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_17_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 18",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_18_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 19",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_19_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 20",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_20_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 21",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_21_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 22",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_22_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 23",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_23_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 24",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_24_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 25",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_25_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 26",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_26_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 27-28",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_27_28_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 29",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_29_www.ahlehaq.org.pdf"
+      },
+      {
+       "label": "Vol 30",
+       "url": "https://ahlesunnatpak.com/uploads/MALFOZAAT_E_HAKEEM_UL_UMMAT_VOL_30_www.ahlehaq.org.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fatawa Razawiya",
+     "files": [
+      {
+       "label": "Vol 1",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-1.1.pdf"
+      },
+      {
+       "label": "Vol 2",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-1.2.pdf"
+      },
+      {
+       "label": "Vol 3",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-3.pdf"
+      },
+      {
+       "label": "Vol 4",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-4.pdf"
+      },
+      {
+       "label": "Vol 5",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-5.pdf"
+      },
+      {
+       "label": "Vol 6",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-6.pdf"
+      },
+      {
+       "label": "Vol 7",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-7.pdf"
+      },
+      {
+       "label": "Vol 8",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-8.pdf"
+      },
+      {
+       "label": "Vol 9",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-9.pdf"
+      },
+      {
+       "label": "Vol 10",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-10.pdf"
+      },
+      {
+       "label": "Vol 11",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-11.pdf"
+      },
+      {
+       "label": "Vol 12",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-12.pdf"
+      },
+      {
+       "label": "Vol 13",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-13.pdf"
+      },
+      {
+       "label": "Vol 14",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-14.pdf"
+      },
+      {
+       "label": "Vol 15",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-15.pdf"
+      },
+      {
+       "label": "Vol 16",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-16.pdf"
+      },
+      {
+       "label": "Vol 17",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-17.pdf"
+      },
+      {
+       "label": "Vol 18",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-18.pdf"
+      },
+      {
+       "label": "Vol 19",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-19.pdf"
+      },
+      {
+       "label": "Vol 20",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-20.pdf"
+      },
+      {
+       "label": "Vol 21",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-21.pdf"
+      },
+      {
+       "label": "Vol 22",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-22.pdf"
+      },
+      {
+       "label": "Vol 23",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-23.pdf"
+      },
+      {
+       "label": "Vol 24",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-24.pdf"
+      },
+      {
+       "label": "Vol 25",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-25.pdf"
+      },
+      {
+       "label": "Vol 26",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-26.pdf"
+      },
+      {
+       "label": "Vol 27",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-27.pdf"
+      },
+      {
+       "label": "Vol 28",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-28.pdf"
+      },
+      {
+       "label": "Vol 29",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-29.pdf"
+      },
+      {
+       "label": "Vol 30",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa-Razawiya-Jild-30.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Bahar e Shariat",
+     "files": [
+      {
+       "label": "Vol 1 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part01-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 2 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part02-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 3 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part03-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 4 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part04-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 5 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part05-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 6 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part06-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 7 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part07-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 8 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part08-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 9 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part09-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 10 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part10-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 11 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part11-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 12 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part12-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 13 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part13-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 14 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part14-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 15 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part15-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 16 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part16-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 17 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part17-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 18 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part18-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 19 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part19-(Rehmani%20Network).pdf"
+      },
+      {
+       "label": "Vol 20 (Rehmani Network)",
+       "url": "https://ahlesunnatpak.com/uploads/Bahar-e-Shariat-Part20-(Rehmani%20Network).pdf"
+      }
+     ]
+    },
+    {
+     "title": "Wasaya Shareef",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Wasaya%20Shareef.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Tehzeer un Naas",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/tehzeer-un-naas-di.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Tazkirat ul Aulia",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/TAZKIRAT-UL-AULIA-ur.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Taqvia tul Iman Origional Old",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Taqvia%20tul%20iman%20origional%20old.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Tahaqiqaat e Chishti",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Tahaqiqaat-e-Chishti%20%D8%AA%D8%AD%D9%82%DB%8C%D9%82%D8%A7%D8%AA%20%DA%86%D8%B4%D8%AA%DB%8C.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Sirat e Mustaqeem Ismail Dehlvi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/sirat%20e%20mustaqeem%20ismail%20dehlvi.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Saeed Ul Haq Fe Takhreej Ja Al Haq",
+     "files": [
+      {
+       "label": "Vol 1",
+       "url": "https://ahlesunnatpak.com/uploads/Saeed-Ul-Haq-Fe-Takhreej-Ja-Al-Haq-Vol-1.pdf"
+      },
+      {
+       "label": "Vol 2",
+       "url": "https://ahlesunnatpak.com/uploads/Saeed-Ul-Haq-Fe-Takhreej-Ja-Al-Haq-Vol-2.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Risala Al Imdad Ashraf Ali Thanvi Dawa Nobowat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Risala%20Al%20Imdad%20Ashraf%20Ali%20Thanvi%20Dawa%20Nobowat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Mujadadi Aqaid-o-Nazariat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Mujadadi%20Aqaid-o-Nazariat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Malfoozat e Alahazrat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Malfoozat%20e%20Alahazrat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Majalis Hakeem ul Ummatr .a By Shaykh Mufti Muhammad Shafir",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/MajalisHakeem-ul-Ummatr.aByShaykhMuftiMuhammadShafir.a.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Kashf ul Asrar Urdu Sharh Durr e Mukhtar",
+     "files": [
+      {
+       "label": "Vol-1",
+       "url": "https://ahlesunnatpak.com/uploads/KASHF_UL_ASRAR_URDU_SHARH_DURR_E_MUKHTAR_VOL_01.pdf"
+      },
+      {
+       "label": "Vol-2",
+       "url": "https://ahlesunnatpak.com/uploads/KASHF_UL_ASRAR_URDU_SHARH_DURR_E_MUKHTAR_VOL_02.pdf"
+      },
+      {
+       "label": "Vol-3",
+       "url": "https://ahlesunnatpak.com/uploads/KASHF_UL_ASRAR_URDU_SHARH_DURR_E_MUKHTAR_VOL_03.pdf"
+      },
+      {
+       "label": "Vol-4",
+       "url": "https://ahlesunnatpak.com/uploads/KASHF_UL_ASRAR_URDU_SHARH_DURR_E_MUKHTAR_VOL_04.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Imdad us Sulook By Shaykh Rasheed Ahmad Gangohi",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/ImdadUsSulookByShaykhRasheedAhmadGangohir.a.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Imdad al mushtaq",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Imdad%20al%20mushtaq.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Hussam al Harmain",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Hussam%20al%20Harmain.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Hifzul Iman of Ashraf Ali",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/HIFZUL_IMAN_OF_ASHRAF_ALI_STD.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Hasht Bihisht",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/HASHT-BIHISHT-ur.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fazail-e-Amal (Kutab Khana Faizi of Raiwind)",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Fazail-e-Amal.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fazail e Sadqaat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Fazail_E_Sadqaat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Faizan e Sunnat",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Faian%20e%20Sunnat.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Bahja tul Asrar",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Bahja%20tul%20Asrar.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Bahishti Zaiwar",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/BAHISHTI_ZAIWAR.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Arwah e Salasah",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/Arwah_E_Salasah.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Al-Muhannad Ala Al-mufannad Shaykh Khaleel Ahmad Saharanpuri r.a",
+     "files": [
+      {
+       "label": "PDF",
+       "url": "https://ahlesunnatpak.com/uploads/al_muhnnad_urdu.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fatawa Alamgiri",
+     "files": [
+      {
+       "label": "Vol 1",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-01.pdf"
+      },
+      {
+       "label": "Vol 2",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-02.pdf"
+      },
+      {
+       "label": "Vol 3",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-03.pdf"
+      },
+      {
+       "label": "Vol 4",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-04.pdf"
+      },
+      {
+       "label": "Vol 5",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-05.pdf"
+      },
+      {
+       "label": "Vol 6",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-06.pdf"
+      },
+      {
+       "label": "Vol 7",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-07.pdf"
+      },
+      {
+       "label": "Vol 8",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-08.pdf"
+      },
+      {
+       "label": "Vol 9",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-09.pdf"
+      },
+      {
+       "label": "Vol 10",
+       "url": "https://ahlesunnatpak.com/uploads/Fatawa%20Alamgiri-10.pdf"
+      }
+     ]
+    },
+    {
+     "title": "Faizan e Shariyyat Sharah Bahar e Shariyyat",
+     "files": [
+      {
+       "label": "Vol 1",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%201.pdf"
+      },
+      {
+       "label": "Vol 2",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%202.pdf"
+      },
+      {
+       "label": "Vol 3",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%203.pdf"
+      },
+      {
+       "label": "Vol 4",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%204.pdf"
+      },
+      {
+       "label": "Vol 5",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%205.pdf"
+      },
+      {
+       "label": "Vol 6",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%206.pdf"
+      },
+      {
+       "label": "Vol 7",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%207.pdf"
+      },
+      {
+       "label": "Vol 8",
+       "url": "https://ahlesunnatpak.com/uploads/Faizan%20e%20Shariyyat%20Sharah%20Bahar%20e%20Shariyyat%208.pdf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ahtisab",
+   "parent": "other",
+   "title": "احتساب ناصبیت (Google Drive)",
+   "title_ur": "احتساب ناصبیت",
+   "sort": 3,
+   "app_path": null,
+   "note": "Books from a shared Google Drive folder. Open the folder to see every file. The admin can add each book here by its exact name.",
+   "is_hidden": false,
+   "books": [
+    {
+     "title": "احتساب ناصبیت — Google Drive folder",
+     "files": [
+      {
+       "label": "Open folder",
+       "url": "https://drive.google.com/drive/folders/1ew74SEkrxvL6zr9-R8ERN74SVd9GC2pz"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

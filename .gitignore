@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+next-env.d.ts
+
+# secrets - never commit these
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.log
+*.tsbuildinfo
+.vercel

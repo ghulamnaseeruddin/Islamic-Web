@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ---------- Colours (change these to restyle the whole app) ---------- */
+:root {
+  --c-bg: #faf8f3;
+  --c-surface: #ffffff;
+  --c-ink: #1b2b24;
+  --c-muted: #6b7a72;
+  --c-line: #e6e2d6;
+  --c-brand: #0f5c46;
+  --c-brand-ink: #ffffff;
+  --c-accent: #b8913a;
+  --c-soft: #eef4f0;
+  --c-danger: #b42318;
+}
+
+:root[data-theme="dark"] {
+  --c-bg: #0e1512;
+  --c-surface: #151f1a;
+  --c-ink: #e8efea;
+  --c-muted: #93a39a;
+  --c-line: #243029;
+  --c-brand: #3fae8a;
+  --c-brand-ink: #06150f;
+  --c-accent: #d6b35c;
+  --c-soft: #17251f;
+  --c-danger: #f97066;
+  color-scheme: dark;
+}
+
+:root[data-theme="sepia"] {
+  --c-bg: #f3e9d2;
+  --c-surface: #f9f1de;
+  --c-ink: #3b2f1e;
+  --c-muted: #7a6a4f;
+  --c-line: #e0d2b2;
+  --c-brand: #3f6b4a;
+  --c-brand-ink: #ffffff;
+  --c-accent: #a67c2e;
+  --c-soft: #efe3c6;
+  --c-danger: #a8321f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --c-bg: #0e1512;
+    --c-surface: #151f1a;
+    --c-ink: #e8efea;
+    --c-muted: #93a39a;
+    --c-line: #243029;
+    --c-brand: #3fae8a;
+    --c-brand-ink: #06150f;
+    --c-accent: #d6b35c;
+    --c-soft: #17251f;
+    --c-danger: #f97066;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-brand: var(--c-brand);
+  --color-brand-ink: var(--c-brand-ink);
+  --color-accent: var(--c-accent);
+  --color-soft: var(--c-soft);
+  --color-danger: var(--c-danger);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
+  --font-urdu: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+}
+
+html {
+  background: var(--c-bg);
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Urdu interface uses Naskh (compact). Nastaliq is used only for Urdu translation text. */
+html[dir="rtl"] body {
+  font-family: "Noto Naskh Arabic", var(--font-sans);
+  line-height: 1.8;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+}
+.font-urdu {
+  font-family: var(--font-urdu);
+}
+
+/* ---------- Small building blocks ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: opacity 0.15s, background-color 0.15s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.btn-primary {
+  background: var(--c-brand);
+  color: var(--c-brand-ink);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+.btn-ghost {
+  background: var(--c-surface);
+  border-color: var(--c-line);
+  color: var(--c-ink);
+}
+.btn-ghost:hover {
+  background: var(--c-soft);
+}
+.btn-quiet {
+  color: var(--c-muted);
+}
+.btn-quiet:hover {
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+.btn-danger {
+  background: transparent;
+  border-color: var(--c-danger);
+  color: var(--c-danger);
+}
+.btn-danger:hover {
+  background: var(--c-danger);
+  color: #fff;
+}
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  color: var(--c-muted);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.icon-btn:hover {
+  background: var(--c-soft);
+  color: var(--c-ink);
+}
+.icon-btn[data-active="true"] {
+  color: var(--c-brand);
+  background: var(--c-soft);
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--c-brand);
+}
+.input::placeholder {
+  color: var(--c-muted);
+  opacity: 0.7;
+}
+
+.card {
+  border-radius: 1rem;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  padding: 1rem;
+}
+@media (min-width: 640px) {
+  .card {
+    padding: 1.25rem;
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--c-muted);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  border: 1px solid var(--c-line);
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--c-muted);
+  background: var(--c-surface);
+}
+.chip[data-active="true"] {
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: var(--c-brand-ink);
+}
+
+.divider-ornament {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+  opacity: 0.5;
+}
+
+/* Page content width */
+.page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 64rem;
+  padding: 1.25rem 1rem 6rem;
+}
+@media (min-width: 640px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 9999px;
+  border: 2px solid var(--c-line);
+  border-top-color: var(--c-brand);
+  animation: spin 0.7s linear infinite;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--c-accent) 35%, transparent);
+}

@@ -1,0 +1,36 @@
+{
+  "name": "noor-ul-ilm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Noor ul Ilm - an Islamic knowledge web app based only on the Quran and Sunnah",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "seed:library": "node supabase/tools/generate-library-seed.mjs",
+    "test": "tsx tests/logic.test.ts && tsx tests/features.test.ts",
+    "check:i18n": "node supabase/tools/check-i18n.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.49.0",
+    "adhan": "^4.4.3",
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  }
+}

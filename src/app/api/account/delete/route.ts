@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient as createAdmin } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { notifyAdmin } from "@/lib/notify";
 
 // Deletes the signed-in user's account and all of their data (rows are removed by "on delete cascade").
 export async function POST() {
@@ -28,8 +29,16 @@ export async function POST() {
     /* ignore */
   }
 
+  const { data: prof } = await supabase.from("profiles").select("full_name").eq("id", user.id).maybeSingle();
+
   const { error } = await admin.auth.admin.deleteUser(user.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  await notifyAdmin("An account was deleted", {
+    Name: prof?.full_name ?? "-",
+    Email: user.email ?? "-",
+    Time: new Date().toLocaleString("en-GB", { timeZone: "Asia/Karachi" }) + " (Pakistan time)",
+  });
 
   await supabase.auth.signOut();
   return NextResponse.json({ ok: true });

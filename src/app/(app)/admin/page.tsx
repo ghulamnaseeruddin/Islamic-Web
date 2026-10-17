@@ -5,16 +5,18 @@ import { useI18n } from "@/lib/i18n";
 import { safeUrl, type LibBook, type LibSection } from "@/lib/library";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
+type Msg = { id: string; name: string; email: string; phone: string | null; message: string; status: string; created_at: string };
 type Report = { id: string; item_type: string; item_ref: string; reason: string; note: string | null; status: string; created_at: string };
 
 export default function AdminPage() {
   const { t } = useI18n();
   const sb = supabaseBrowser();
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
-  const [tab, setTab] = useState<"library" | "reports">("library");
+  const [tab, setTab] = useState<"library" | "reports" | "messages">("library");
   const [sections, setSections] = useState<LibSection[]>([]);
   const [books, setBooks] = useState<LibBook[]>([]);
   const [reports, setReports] = useState<Report[]>([]);
+  const [messages, setMessages] = useState<Msg[]>([]);
   const [pick, setPick] = useState("");
   const [form, setForm] = useState({ title: "", title_ur: "", author: "", label: "PDF", url: "", app_path: "" });
   const [msg, setMsg] = useState("");
@@ -37,6 +39,11 @@ export default function AdminPage() {
     setReports((data as Report[]) ?? []);
   }, [sb]);
 
+  const loadMessages = useCallback(async () => {
+    const { data } = await sb.from("contact_messages").select("*").order("created_at", { ascending: false }).limit(200);
+    setMessages((data as Msg[]) ?? []);
+  }, [sb]);
+
   useEffect(() => {
     (async () => {
       const { data: u } = await sb.auth.getUser();
@@ -46,6 +53,7 @@ export default function AdminPage() {
       if (ok) {
         loadSections();
         loadReports();
+        loadMessages();
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,6 +100,14 @@ export default function AdminPage() {
     await sb.from("reports").update({ status }).eq("id", r.id);
     loadReports();
   }
+  async function setMsgStatus(m: Msg, status: "new" | "done") {
+    await sb.from("contact_messages").update({ status }).eq("id", m.id);
+    loadMessages();
+  }
+  async function delMsg(m: Msg) {
+    await sb.from("contact_messages").delete().eq("id", m.id);
+    loadMessages();
+  }
   async function delReport(r: Report) {
     await sb.from("reports").delete().eq("id", r.id);
     loadReports();
@@ -108,7 +124,34 @@ export default function AdminPage() {
         <button className="chip" data-active={tab === "reports"} onClick={() => setTab("reports")}>
           {t("admin.reports")} ({reports.filter((r) => r.status === "open").length})
         </button>
+        <button className="chip" data-active={tab === "messages"} onClick={() => setTab("messages")}>
+          {t("admin.messages")} ({messages.filter((m) => m.status === "new").length})
+        </button>
       </div>
+
+      {tab === "messages" && (
+        <ul className="mt-4 space-y-2">
+          {messages.length === 0 && <p className="mt-6 text-center text-sm text-muted">{t("admin.noMessages")}</p>}
+          {messages.map((m) => (
+            <li key={m.id} className={`card ${m.status === "new" ? "!border-brand" : ""}`}>
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0 text-sm">
+                  <p className="font-medium" dir="auto">{m.name}</p>
+                  <p className="text-muted" dir="ltr">{m.email}{m.phone ? ` · ${m.phone}` : ""}</p>
+                  <p className="mt-2 whitespace-pre-wrap break-words" dir="auto">{m.message}</p>
+                  <p className="mt-2 text-xs text-muted" dir="ltr">{new Date(m.created_at).toLocaleString()}</p>
+                </div>
+                <div className="flex shrink-0 gap-1">
+                  <button className="btn btn-ghost !py-1 text-xs" onClick={() => setMsgStatus(m, m.status === "new" ? "done" : "new")}>
+                    {m.status === "new" ? t("admin.markDone") : t("admin.reopen")}
+                  </button>
+                  <button className="btn btn-danger !py-1 text-xs" onClick={() => delMsg(m)}>{t("common.delete")}</button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {tab === "library" && (
         <>

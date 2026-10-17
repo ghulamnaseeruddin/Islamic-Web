@@ -17,6 +17,7 @@ const ITEMS: { href: string; icon: IconName; title: TKey; body: TKey }[] = [
   { href: "/seerah", icon: "clock", title: "seerah.title", body: "more.seerahBody" },
   { href: "/offline", icon: "download", title: "offline.title", body: "more.offlineBody" },
   { href: "/azkaar", icon: "tasbih", title: "nav.azkaar", body: "more.azkaarBody" },
+  { href: "/contact", icon: "note", title: "contact.title", body: "more.contactBody" },
   { href: "/prayer", icon: "clock", title: "nav.prayer", body: "more.prayerBody" },
 ];
 

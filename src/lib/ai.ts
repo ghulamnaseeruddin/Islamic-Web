@@ -39,7 +39,7 @@ export function providerOrder(): Provider[] {
   return valid.filter((p) => keyFor(p));
 }
 
-async function withTimeout(url: string, init: RequestInit, ms = 25000) {
+async function withTimeout(url: string, init: RequestInit, ms = 20000) {
   const ctrl = new AbortController();
   const id = setTimeout(() => ctrl.abort(), ms);
   try {
@@ -69,11 +69,7 @@ async function callOpenAiStyle(
       ...(json ? { response_format: { type: "json_object" } } : {}),
     }),
   });
-  if (!res.ok) throw new Error(`${res.status}`);
-  const j = await res.json();
-  const text = j?.choices?.[0]?.message?.content;
-  if (typeof text !== "string" || !text.trim()) throw new Error("empty");
-  return text;
+    if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
 }
 
 async function callGemini(
@@ -97,15 +93,12 @@ async function callGemini(
       },
     }),
   });
-  if (!res.ok) throw new Error(`${res.status}`);
-  const j = await res.json();
-  const text = j?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("");
-  if (typeof text !== "string" || !text.trim()) throw new Error("empty");
-  return text;
+   if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
 }
 
 export class NoProviderError extends Error {}
 
+/** Tries each provider and model in turn until one answers. */
 /** Tries each provider and model in turn until one answers. */
 export async function chat(opts: {
   system: string;
@@ -119,22 +112,31 @@ export async function chat(opts: {
   const tier = opts.tier ?? "smart";
   const temperature = opts.temperature ?? 0.2;
   let lastError = "";
+  const started = Date.now();
 
-  for (const p of order) {
-    const key = keyFor(p)!;
-    for (const model of models(p, tier)) {
-      try {
-        let text: string;
-        if (p === "gemini") text = await callGemini(key, model, opts.system, opts.messages, !!opts.json, temperature);
-        else {
-          const base = p === "groq" ? "https://api.groq.com/openai/v1" : "https://api.openai.com/v1";
-          text = await callOpenAiStyle(base, key, model, opts.system, opts.messages, !!opts.json, temperature);
+  // Two passes: if every provider fails with a busy/limit error, wait a moment and try once more.
+  for (let pass = 0; pass < 2; pass++) {
+    for (const p of order) {
+      const key = keyFor(p)!;
+      for (const model of models(p, tier)) {
+        try {
+          let text: string;
+          if (p === "gemini") text = await callGemini(key, model, opts.system, opts.messages, !!opts.json, temperature);
+          else {
+            const base = p === "groq" ? "https://api.groq.com/openai/v1" : "https://api.openai.com/v1";
+            text = await callOpenAiStyle(base, key, model, opts.system, opts.messages, !!opts.json, temperature);
+          }
+          return { text, provider: p, model };
+        } catch (e) {
+          const msg = (e as Error).name === "AbortError" ? "timeout" : (e as Error).message;
+          lastError = `${p}/${model}: ${msg}`;
+          console.error("[AI]", lastError);
         }
-        return { text, provider: p, model };
-      } catch (e) {
-        lastError = `${p}/${model}: ${(e as Error).message}`;
       }
     }
+    const busy = /\b(429|500|502|503|504)\b|timeout/.test(lastError);
+    if (!busy || Date.now() - started > 25000) break;
+    await new Promise((r) => setTimeout(r, 1500));
   }
   throw new Error(`All AI providers failed (${lastError})`);
 }

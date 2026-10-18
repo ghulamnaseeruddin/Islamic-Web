@@ -4,9 +4,23 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { useI18n } from "@/lib/i18n";
+import { getSurah } from "@/lib/quran/surahs";
+import { getHadithBook } from "@/lib/hadith/books";
 
-type Verse = { ref: string; surahName: string; arabic: string; text: string };
-type Msg = { role: "user" | "assistant"; content: string; verses?: Verse[]; error?: boolean };
+type Verse = { ref: string; surahName: string; arabic: string; text: string; textUr?: string };
+type HadithRef = {
+  slug: string;
+  book: string;
+  number: number;
+  sectionNo: number | null;
+  section: string;
+  grade: string;
+  arabic: string;
+  text: string;
+  urdu?: string;
+  sectionUr?: string;
+};
+type Msg = { role: "user" | "assistant"; content: string; verses?: Verse[]; hadiths?: HadithRef[]; error?: boolean };
 
 export default function AskPage() {
   const { t, lang } = useI18n();
@@ -38,11 +52,11 @@ export default function AskPage() {
       if (res.status === 429) {
         setMsgs((m) => [...m, { role: "assistant", content: t("ask.limit"), error: true }]);
       } else if (!res.ok) {
-        setMsgs((m) => [...m, { role: "assistant", content: j.error || t("common.error"), error: true }]);
+        setMsgs((m) => [...m, { role: "assistant", content: (j.error || t("common.error")) + (j.detail ? `\n\n[Admin only] ${j.detail}` : ""), error: true }]);
       } else if (j.offTopic) {
         setMsgs((m) => [...m, { role: "assistant", content: t("ask.offTopic"), error: true }]);
       } else {
-        setMsgs((m) => [...m, { role: "assistant", content: j.answer, verses: j.verses }]);
+        setMsgs((m) => [...m, { role: "assistant", content: j.answer, verses: j.verses, hadiths: j.hadiths }]);
       }
     } catch {
       setMsgs((m) => [...m, { role: "assistant", content: t("common.error"), error: true }]);
@@ -70,17 +84,53 @@ export default function AskPage() {
             <div className={m.role === "user" ? "max-w-[85%] rounded-2xl bg-brand px-4 py-2.5 text-sm text-brand-ink" : "card"}>
               <p className={`whitespace-pre-wrap text-sm leading-7 ${m.error ? "text-muted" : ""}`} dir="auto">{m.content}</p>
               {m.verses && m.verses.length > 0 && (
-                <ul className="mt-3 space-y-3 border-t border-line pt-3">
-                  {m.verses.map((v) => (
-                    <li key={v.ref}>
-                      <Link href={`/quran/${v.ref.split(":")[0]}#a${v.ref.split(":")[1]}`} className="text-xs text-brand underline" dir="ltr">
-                        {v.surahName} {v.ref}
-                      </Link>
-                      <p className="font-arabic mt-1 text-xl leading-loose" dir="rtl" lang="ar">{v.arabic}</p>
-                      <p className="text-xs text-muted" dir="ltr">{v.text}</p>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-3 border-t border-line pt-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("ask.refQuran")}</p>
+                  <ul className="mt-2 space-y-3">
+                    {m.verses.map((v) => (
+                      <li key={v.ref}>
+                        <Link href={`/quran/${v.ref.split(":")[0]}#a${v.ref.split(":")[1]}`} className="text-xs text-brand underline" dir="ltr">
+                          {lang === "ur"
+                            ? `${getSurah(Number(v.ref.split(":")[0]))?.ar ?? v.surahName} · ${t("ask.ayah")} ${v.ref.split(":")[1]}`
+                            : `${v.surahName} · ${t("ask.surah")} ${v.ref.split(":")[0]}, ${t("ask.ayah")} ${v.ref.split(":")[1]}`}
+                        </Link>
+                        <p className="font-arabic mt-1 text-xl leading-loose" dir="rtl" lang="ar">{v.arabic}</p>
+                        {lang === "ur" && v.textUr ? (
+                          <p className="font-urdu text-sm leading-loose text-muted" dir="rtl" lang="ur">{v.textUr}</p>
+                        ) : (
+                          <p className="text-xs text-muted" dir="ltr">{v.text}</p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {m.hadiths && m.hadiths.length > 0 && (
+                <div className="mt-3 border-t border-line pt-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("ask.refHadith")}</p>
+                  <ul className="mt-2 space-y-3">
+                    {m.hadiths.map((h) => (
+                      <li key={`${h.slug}:${h.number}`}>
+                        <Link
+                          href={h.sectionNo != null ? `/hadith/${h.slug}?s=${h.sectionNo}&h=${h.number}` : `/hadith/${h.slug}`}
+                          className="text-xs text-brand underline"
+                          dir={lang === "ur" ? "rtl" : "ltr"}
+                        >
+                          {lang === "ur" ? (getHadithBook(h.slug)?.ar ?? h.book) : h.book} · {t("ask.hadithNo")} {h.number}
+                          {h.sectionNo != null ? ` · ${t("ask.chapter")} ${h.sectionNo}` : ""}
+                          {lang === "ur" ? (h.sectionUr ? `: ${h.sectionUr}` : "") : h.section ? `: ${h.section}` : ""}
+                        </Link>
+                        {h.grade && <p className="text-xs text-muted" dir="ltr">{t("ask.grade")}: {h.grade}</p>}
+                        {h.arabic && <p className="font-arabic mt-1 text-xl leading-loose" dir="rtl" lang="ar">{h.arabic}</p>}
+                        {lang === "ur" && h.urdu ? (
+                          <p className="font-urdu text-sm leading-loose text-muted" dir="rtl" lang="ur">{h.urdu}</p>
+                        ) : (
+                          <p className="text-xs text-muted" dir="ltr">{h.text}</p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           </li>

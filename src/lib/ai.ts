@@ -12,8 +12,9 @@ const DEFAULT_MODELS: Record<Provider, Record<Tier, string[]>> = {
     fast: ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"],
   },
   gemini: {
-    smart: ["gemini-2.5-flash", "gemini-2.5-flash-lite"],
-    fast: ["gemini-2.5-flash-lite", "gemini-2.5-flash"],
+    // Newest first. The 2.5 models stay last because Google no longer gives them to new keys.
+    smart: ["gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-2.5-flash"],
+    fast: ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-2.5-flash-lite"],
   },
   openai: {
     smart: ["gpt-4o-mini"],
@@ -98,7 +99,7 @@ async function callGemini(
 
 export class NoProviderError extends Error {}
 
-/** Tries each provider and model in turn until one answers. */
+
 /** Tries each provider and model in turn until one answers. */
 export async function chat(opts: {
   system: string;
@@ -111,11 +112,12 @@ export async function chat(opts: {
   if (order.length === 0) throw new NoProviderError("No AI key is set. Add GROQ_API_KEY or GEMINI_API_KEY.");
   const tier = opts.tier ?? "smart";
   const temperature = opts.temperature ?? 0.2;
-  let lastError = "";
+  const errors: string[] = [];
   const started = Date.now();
 
-  // Two passes: if every provider fails with a busy/limit error, wait a moment and try once more.
+  // Two passes: if a provider fails with a busy/limit error, wait a moment and try once more.
   for (let pass = 0; pass < 2; pass++) {
+    const passErrors: string[] = [];
     for (const p of order) {
       const key = keyFor(p)!;
       for (const model of models(p, tier)) {
@@ -128,17 +130,19 @@ export async function chat(opts: {
           }
           return { text, provider: p, model };
         } catch (e) {
-          const msg = (e as Error).name === "AbortError" ? "timeout" : (e as Error).message;
-          lastError = `${p}/${model}: ${msg}`;
-          console.error("[AI]", lastError);
+          const raw = (e as Error).name === "AbortError" ? "timeout" : (e as Error).message;
+          const msg = `${p}/${model}: ${raw.replace(/\s+/g, " ").slice(0, 110)}`;
+          passErrors.push(msg);
+          console.error("[AI]", msg);
         }
       }
     }
-    const busy = /\b(429|500|502|503|504)\b|timeout/.test(lastError);
+    if (pass === 0) errors.push(...passErrors);
+    const busy = /\b(429|500|502|503|504)\b|timeout/.test(passErrors.join(" "));
     if (!busy || Date.now() - started > 25000) break;
     await new Promise((r) => setTimeout(r, 1500));
   }
-  throw new Error(`All AI providers failed (${lastError})`);
+  throw new Error(`All AI providers failed. ${errors.join(" | ")}`);
 }
 
 /** Reads JSON even if the model wrapped it in text or code fences. */

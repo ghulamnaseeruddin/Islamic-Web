@@ -5,11 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@/components/icons";
 import { useI18n } from "@/lib/i18n";
 import { SURAHS } from "@/lib/quran/surahs";
+import { JUZ } from "@/lib/quran/juz";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 export default function QuranIndexPage() {
   const { t, lang } = useI18n();
   const [q, setQ] = useState("");
+  const [tab, setTab] = useState<"surah" | "juz">("surah");
   const [last, setLast] = useState<{ surah: number; ayah: number } | null>(null);
 
   useEffect(() => {
@@ -52,42 +54,86 @@ export default function QuranIndexPage() {
         </Link>
       )}
 
-      <div className="relative mt-5">
-        <Icon name="search" className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-        <input
-          className="input ps-9"
-          placeholder={t("quran.filter")}
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-        />
+      <div className="mt-5 flex gap-2" role="tablist">
+        {(["surah", "juz"] as const).map((k) => (
+          <button
+            key={k}
+            role="tab"
+            aria-selected={tab === k}
+            onClick={() => setTab(k)}
+            className={`rounded-full border px-4 py-1.5 text-sm font-medium transition ${
+              tab === k ? "border-brand bg-brand text-brand-ink" : "border-line bg-surface hover:bg-soft"
+            }`}
+          >
+            {t(k === "surah" ? "quran.tabSurah" : "quran.tabJuz")}
+          </button>
+        ))}
       </div>
 
-      <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-        {list.map((s) => (
-          <li key={s.n}>
-            <Link
-              href={`/quran/${s.n}`}
-              className="flex items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 transition hover:bg-soft"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft text-sm font-medium text-brand">
-                {s.n}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium" dir="ltr">
-                  {s.en}
+      {tab === "juz" && (
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          {JUZ.map((j) => (
+            <li key={j.n}>
+              <Link
+                href={`/quran/${j.surah}#a${j.ayah}`}
+                className="flex items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 transition hover:bg-soft"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft text-sm font-medium text-brand">
+                  {j.n}
                 </span>
-                <span className="block text-xs text-muted">
-                  {t("quran.ayahsCount", { n: s.ayahs })}
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-medium">{t("quran.juz", { n: j.n })}</span>
+                  <span className="block text-xs text-muted" dir="ltr">
+                    {t("quran.startsAt")} {SURAHS[j.surah - 1].en} {j.surah}:{j.ayah}
+                  </span>
                 </span>
-              </span>
-              <span className="font-arabic text-xl" dir="rtl" lang={lang === "ur" ? "ar" : undefined}>
-                {s.ar.replace("سورة ", "")}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      {list.length === 0 && <p className="mt-6 text-center text-sm text-muted">{t("common.noResults")}</p>}
+                <span className="font-arabic text-lg" dir="rtl" lang="ar">{j.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {tab === "surah" && (
+        <>
+          <div className="relative mt-5">
+            <Icon name="search" className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+            <input
+              className="input ps-9"
+              placeholder={t("quran.filter")}
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </div>
+
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {list.map((s) => (
+              <li key={s.n}>
+                <Link
+                  href={`/quran/${s.n}`}
+                  className="flex items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 transition hover:bg-soft"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft text-sm font-medium text-brand">
+                    {s.n}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium" dir="ltr">
+                      {s.en}
+                    </span>
+                    <span className="block text-xs text-muted">
+                      {t("quran.ayahsCount", { n: s.ayahs })}
+                    </span>
+                  </span>
+                  <span className="font-arabic text-xl" dir="rtl" lang={lang === "ur" ? "ar" : undefined}>
+                    {s.ar.replace("سورة ", "")}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {list.length === 0 && <p className="mt-6 text-center text-sm text-muted">{t("common.noResults")}</p>}
+        </>
+      )}
     </div>
   );
 }

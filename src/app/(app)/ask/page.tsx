@@ -28,6 +28,9 @@ export default function AskPage() {
   const [q, setQ] = useState("");
   const [busy, setBusy] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  const recRef = useRef<any>(null);
+  const [listening, setListening] = useState(false);
+  const [micMsg, setMicMsg] = useState("");
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -35,11 +38,55 @@ export default function AskPage() {
 
   const examples = [t("ask.ex1"), t("ask.ex2"), t("ask.ex3")];
 
+  function toggleMic() {
+    if (listening) {
+      recRef.current?.stop();
+      return;
+    }
+    const w = window as any;
+    const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
+    if (!SR) {
+      setMicMsg(t("ask.micUnsupported"));
+      return;
+    }
+    const rec = new SR();
+    rec.lang = lang === "ur" ? "ur-PK" : "en-US";
+    rec.interimResults = true;
+    rec.continuous = false;
+    const base = q.trim();
+    rec.onstart = () => {
+      setListening(true);
+      setMicMsg(t("ask.micListening"));
+    };
+    rec.onresult = (ev: any) => {
+      let text = "";
+      for (let i = 0; i < ev.results.length; i++) text += ev.results[i][0].transcript;
+      setQ((base ? base + " " : "") + text);
+    };
+    rec.onerror = (ev: any) => {
+      const denied = ev.error === "not-allowed" || ev.error === "service-not-allowed";
+      setMicMsg(denied ? t("ask.micDenied") : ev.error === "aborted" ? "" : t("ask.micError"));
+    };
+    rec.onend = () => {
+      setListening(false);
+      setMicMsg((m) => (m === t("ask.micListening") ? "" : m));
+    };
+    recRef.current = rec;
+    try {
+      rec.start();
+    } catch {
+      setMicMsg(t("ask.micError"));
+    }
+  }
+
+  useEffect(() => () => recRef.current?.abort?.(), []);
+
   async function send(text: string) {
     const question = text.trim();
     if (question.length < 3 || busy) return;
     const history = msgs.filter((m) => !m.error).map((m) => ({ role: m.role, content: m.content }));
     setMsgs((m) => [...m, { role: "user", content: question }]);
+    recRef.current?.stop?.();
     setQ("");
     setBusy(true);
     try {
@@ -146,13 +193,24 @@ export default function AskPage() {
         }}
         className="sticky bottom-20 mt-6 flex gap-2 sm:bottom-4"
       >
-        <input className="input shadow-sm" value={q} maxLength={500} onChange={(e) => setQ(e.target.value)} placeholder={t("ask.placeholder")} />
+        <input className="input shadow-sm" value={q} maxLength={500} dir="auto" onChange={(e) => setQ(e.target.value)} placeholder={t("ask.placeholder")} />
+        <button
+          type="button"
+          onClick={toggleMic}
+          className={`btn ${listening ? "btn-primary animate-pulse" : ""}`}
+          aria-label={listening ? t("ask.micStop") : t("ask.mic")}
+          title={listening ? t("ask.micStop") : t("ask.mic")}
+        >
+          <Icon name={listening ? "stop" : "mic"} className="h-4 w-4" />
+        </button>
         <button className="btn btn-primary" disabled={busy || q.trim().length < 3} aria-label={t("ask.send")}>
           <Icon name="sparkle" className="h-4 w-4" />
           <span className="hidden sm:inline">{t("ask.send")}</span>
         </button>
       </form>
-      <p className="mt-3 text-center text-xs text-muted">{t("ask.disclaimer")}</p>
+      {micMsg && <p className="mt-2 text-center text-xs text-muted" role="status">{micMsg}</p>}
+      <p className="mt-3 text-center text-xs text-muted">{t("ask.anyLang")}</p>
+      <p className="mt-1 text-center text-xs text-muted">{t("ask.disclaimer")}</p>
     </div>
   );
 }

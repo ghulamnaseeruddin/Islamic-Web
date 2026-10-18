@@ -10,7 +10,7 @@ export const maxDuration = 60;
 const PLAN_SYSTEM = `You help find Quran verses and hadith for a question. Reply with JSON only:
 {"off_topic": boolean, "keywords": string[], "refs": string[]}
 - off_topic: true if the question is not about Islam, the Quran or the Sunnah.
-- keywords: up to 3 single English words that appear in the Sahih International translation of relevant verses and in English hadith translations (for example "patience", "parents", "prayer").
+- keywords: the question may be in any language (Urdu, Roman Urdu, Arabic, English, ...). Always give up to 3 single English words that appear in the Sahih International translation of relevant verses and in English hadith translations (for example "patience", "parents", "prayer").
 - refs: up to 3 verse references "surah:ayah" you are sure are relevant (for example "2:153"). Use [] if unsure.`;
 
 const ANSWER_SYSTEM = (lang: "en" | "ur") => `You are "Ask Noor", a careful study helper inside an Islamic app. The app follows only the Qur'an and the authentic Sunnah, with no sect labels.
@@ -22,7 +22,7 @@ Rules:
 4. If scholars differ, say so neutrally in one line. Do not name or attack any group.
 5. If CONTEXT does not answer the question, say clearly that you could not find it and suggest searching in the app. Never guess.
 6. Keep it short and simple: at most 220 words. No headings.
-7. Write the answer in ${lang === "ur" ? "simple Urdu (اردو), but keep citations like [2:153] and [bukhari:1] unchanged" : "simple English"}.
+7. Reply in the same language the user wrote the question in. Urdu script or Roman Urdu (Urdu in English letters): reply in simple Urdu (اردو). English: reply in simple English. Another language: reply in that language if you can, otherwise in English. If you cannot tell, reply in ${lang === "ur" ? "simple Urdu (اردو)" : "simple English"}. Always keep citations like [2:153] and [bukhari:1] unchanged.
 8. Be respectful. Say "peace be upon him" after the Prophet's name in the form ﷺ.`;
 
 function clientIssue(message: string, status: number, detail?: string) {
@@ -139,7 +139,7 @@ export async function POST(req: Request) {
         surahName: b.surahName,
         arabic: b.arabic,
         text: b.translations["en.sahih"] ?? "",
-        textUr: b.translations["ur.jalandhry"] ?? ""
+        textUr: b.translations["ur.jalandhry"] ?? "",
       }));
 
     const citedHadith = new Set([...ans.text.matchAll(/\[([a-z-]+):(\d+)\]/g)].map((m) => `${m[1]}:${Number(m[2])}`));
@@ -164,8 +164,6 @@ export async function POST(req: Request) {
           urdu: ur?.text ?? "",
           sectionUr: secUr?.name ?? "",
           text: h.text,
-          textUr: ur?.text ?? "",
-          sectionUr: secUr?.text ?? ""
         };
       }),
     );

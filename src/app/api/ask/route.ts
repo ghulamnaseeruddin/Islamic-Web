@@ -147,7 +147,7 @@ export async function POST(req: Request) {
     const hadiths = await Promise.all(
       usedHadith.map(async (h) => {
         const key = HADITH_BOOKS.find((b) => b.slug === h.slug)?.key ?? "";
-                const wantUrdu = lang === "ur" && !!key;
+        const wantUrdu = !!key; // Urdu is always included, next to Arabic and English
         const [ar, ur, secUr] = await Promise.all([
           key ? fetchHadith("ara", key, h.number).catch(() => null) : null,
           wantUrdu ? fetchHadith("urd", key, h.number).catch(() => null) : null,

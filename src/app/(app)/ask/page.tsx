@@ -90,16 +90,11 @@ export default function AskPage() {
                     {m.verses.map((v) => (
                       <li key={v.ref}>
                         <Link href={`/quran/${v.ref.split(":")[0]}#a${v.ref.split(":")[1]}`} className="text-xs text-brand underline" dir="ltr">
-                          {lang === "ur"
-                            ? `${getSurah(Number(v.ref.split(":")[0]))?.ar ?? v.surahName} · ${t("ask.ayah")} ${v.ref.split(":")[1]}`
-                            : `${v.surahName} · ${t("ask.surah")} ${v.ref.split(":")[0]}, ${t("ask.ayah")} ${v.ref.split(":")[1]}`}
+                          {v.surahName} · {getSurah(Number(v.ref.split(":")[0]))?.ar} · {t("ask.surah")} {v.ref.split(":")[0]}, {t("ask.ayah")} {v.ref.split(":")[1]}
                         </Link>
                         <p className="font-arabic mt-1 text-xl leading-loose" dir="rtl" lang="ar">{v.arabic}</p>
-                        {lang === "ur" && v.textUr ? (
-                          <p className="font-urdu text-sm leading-loose text-muted" dir="rtl" lang="ur">{v.textUr}</p>
-                        ) : (
-                          <p className="text-xs text-muted" dir="ltr">{v.text}</p>
-                        )}
+                        {v.textUr && <p className="font-urdu text-sm leading-loose" dir="rtl" lang="ur">{v.textUr}</p>}
+                        <p className="mt-1 text-xs text-muted" dir="ltr" lang="en">{v.text}</p>
                       </li>
                     ))}
                   </ul>
@@ -114,19 +109,22 @@ export default function AskPage() {
                         <Link
                           href={h.sectionNo != null ? `/hadith/${h.slug}?s=${h.sectionNo}&h=${h.number}` : `/hadith/${h.slug}`}
                           className="text-xs text-brand underline"
-                          dir={lang === "ur" ? "rtl" : "ltr"}
+                          dir="ltr"
                         >
-                          {lang === "ur" ? (getHadithBook(h.slug)?.ar ?? h.book) : h.book} · {t("ask.hadithNo")} {h.number}
+                          {h.book} · {getHadithBook(h.slug)?.ar} · {t("ask.hadithNo")} {h.number}
                           {h.sectionNo != null ? ` · ${t("ask.chapter")} ${h.sectionNo}` : ""}
-                          {lang === "ur" ? (h.sectionUr ? `: ${h.sectionUr}` : "") : h.section ? `: ${h.section}` : ""}
                         </Link>
+                        {(h.section || h.sectionUr) && (
+                          <p className="text-xs text-muted" dir="auto">
+                            {h.section}
+                            {h.section && h.sectionUr ? " · " : ""}
+                            {h.sectionUr}
+                          </p>
+                        )}
                         {h.grade && <p className="text-xs text-muted" dir="ltr">{t("ask.grade")}: {h.grade}</p>}
                         {h.arabic && <p className="font-arabic mt-1 text-xl leading-loose" dir="rtl" lang="ar">{h.arabic}</p>}
-                        {lang === "ur" && h.urdu ? (
-                          <p className="font-urdu text-sm leading-loose text-muted" dir="rtl" lang="ur">{h.urdu}</p>
-                        ) : (
-                          <p className="text-xs text-muted" dir="ltr">{h.text}</p>
-                        )}
+                        {h.urdu && <p className="font-urdu text-sm leading-loose" dir="rtl" lang="ur">{h.urdu}</p>}
+                        <p className="mt-1 text-xs text-muted" dir="ltr" lang="en">{h.text}</p>
                       </li>
                     ))}
                   </ul>

@@ -70,7 +70,11 @@ async function callOpenAiStyle(
       ...(json ? { response_format: { type: "json_object" } } : {}),
     }),
   });
-    if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
+  const j = await res.json();
+  const text = j?.choices?.[0]?.message?.content;
+  if (typeof text !== "string" || !text.trim()) throw new Error("empty");
+  return text;
 }
 
 async function callGemini(
@@ -94,11 +98,20 @@ async function callGemini(
       },
     }),
   });
-   if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`);
+  const j = await res.json();
+  const text = j?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("");
+  if (typeof text !== "string" || !text.trim()) throw new Error("empty");
+  return text;
 }
 
 export class NoProviderError extends Error {}
 
+/** Turns anything that was thrown into plain text, never crashes. */
+function errText(e: unknown): string {
+  if (e instanceof Error) return e.name === "AbortError" ? "timeout" : String(e.message || e.name || "error");
+  return String(e ?? "unknown error");
+}
 
 /** Tries each provider and model in turn until one answers. */
 export async function chat(opts: {
@@ -130,8 +143,7 @@ export async function chat(opts: {
           }
           return { text, provider: p, model };
         } catch (e) {
-          const raw = (e as Error).name === "AbortError" ? "timeout" : (e as Error).message;
-          const msg = `${p}/${model}: ${raw.replace(/\s+/g, " ").slice(0, 110)}`;
+          const msg = `${p}/${model}: ${errText(e).replace(/\s+/g, " ").slice(0, 110)}`;
           passErrors.push(msg);
           console.error("[AI]", msg);
         }

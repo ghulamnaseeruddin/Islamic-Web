@@ -20,7 +20,30 @@ type HadithRef = {
   urdu?: string;
   sectionUr?: string;
 };
-type Msg = { role: "user" | "assistant"; content: string; verses?: Verse[]; hadiths?: HadithRef[]; error?: boolean };
+type Hist = { role: "user" | "assistant"; content: string };
+type Confirm = {
+  question: string;
+  understanding: string;
+  englishQuery: string;
+  history: Hist[];
+  state: "pending" | "yes" | "no" | "dismissed";
+};
+type Msg = {
+  role: "user" | "assistant";
+  content: string;
+  verses?: Verse[];
+  hadiths?: HadithRef[];
+  error?: boolean;
+  confirm?: Confirm; // "Is this what you are asking?" card
+  meta?: boolean; // the Yes / No bubbles; not sent to the AI as history
+};
+
+function historyOf(list: Msg[]): Hist[] {
+  return list
+    .filter((m) => !m.error && !m.confirm && !m.meta)
+    .map((m) => ({ role: m.role, content: m.content }))
+    .slice(-6);
+}
 
 export default function AskPage() {
   const { t, lang } = useI18n();
@@ -28,6 +51,7 @@ export default function AskPage() {
   const [q, setQ] = useState("");
   const [busy, setBusy] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const recRef = useRef<any>(null);
   const [listening, setListening] = useState(false);
   const [micMsg, setMicMsg] = useState("");
@@ -81,25 +105,85 @@ export default function AskPage() {
 
   useEffect(() => () => recRef.current?.abort?.(), []);
 
+  async function post(payload: Record<string, unknown>) {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const j = await res.json().catch(() => ({}));
+    return { res, j };
+  }
+
+  function addError(res: Response, j: any) {
+    if (res.status === 429) {
+      setMsgs((m) => [...m, { role: "assistant", content: t("ask.limit"), error: true }]);
+    } else {
+      setMsgs((m) => [
+        ...m,
+        { role: "assistant", content: (j.error || t("common.error")) + (j.detail ? `\n\n[Admin only] ${j.detail}` : ""), error: true },
+      ]);
+    }
+  }
+
+  // STEP 1: the user asks. The AI restates the question and asks "Is this what you are asking?"
   async function send(text: string) {
     const question = text.trim();
     if (question.length < 3 || busy) return;
-    const history = msgs.filter((m) => !m.error).map((m) => ({ role: m.role, content: m.content }));
-    setMsgs((m) => [...m, { role: "user", content: question }]);
+    const history = historyOf(msgs);
+    setMsgs((m) => [
+      ...m.map((x) => (x.confirm?.state === "pending" ? { ...x, confirm: { ...x.confirm, state: "dismissed" as const } } : x)),
+      { role: "user", content: question },
+    ]);
     recRef.current?.stop?.();
     setQ("");
     setBusy(true);
     try {
-      const res = await fetch("/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, lang, history }),
+      const { res, j } = await post({ mode: "understand", question, lang, history });
+      if (!res.ok) {
+        addError(res, j);
+      } else if (j.offTopic) {
+        setMsgs((m) => [...m, { role: "assistant", content: t("ask.offTopic"), error: true }]);
+      } else if (j.clarify) {
+        setMsgs((m) => [...m, { role: "assistant", content: j.clarify }]);
+      } else if (j.understanding) {
+        setMsgs((m) => [
+          ...m,
+          {
+            role: "assistant",
+            content: j.understanding,
+            confirm: { question, understanding: j.understanding, englishQuery: j.englishQuery || question, history, state: "pending" },
+          },
+        ]);
+      } else {
+        setMsgs((m) => [...m, { role: "assistant", content: t("common.error"), error: true }]);
+      }
+    } catch {
+      setMsgs((m) => [...m, { role: "assistant", content: t("common.error"), error: true }]);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // STEP 2: the user says "Yes, that is exactly it". Now the AI answers with references.
+  async function confirmYes(i: number, c: Confirm) {
+    if (busy) return;
+    setMsgs((m) => [
+      ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "yes" as const } } : x)),
+      { role: "user", content: t("ask.confirmYesMsg"), meta: true },
+    ]);
+    setBusy(true);
+    try {
+      const { res, j } = await post({
+        mode: "answer",
+        question: c.question,
+        understanding: c.understanding,
+        englishQuery: c.englishQuery,
+        lang,
+        history: c.history,
       });
-      const j = await res.json().catch(() => ({}));
-      if (res.status === 429) {
-        setMsgs((m) => [...m, { role: "assistant", content: t("ask.limit"), error: true }]);
-      } else if (!res.ok) {
-        setMsgs((m) => [...m, { role: "assistant", content: (j.error || t("common.error")) + (j.detail ? `\n\n[Admin only] ${j.detail}` : ""), error: true }]);
+      if (!res.ok) {
+        addError(res, j);
       } else if (j.offTopic) {
         setMsgs((m) => [...m, { role: "assistant", content: t("ask.offTopic"), error: true }]);
       } else {
@@ -110,6 +194,17 @@ export default function AskPage() {
     } finally {
       setBusy(false);
     }
+  }
+
+  // The user says "No, that is not what I meant". Ask them to explain.
+  function confirmNo(i: number) {
+    if (busy) return;
+    setMsgs((m) => [
+      ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "no" as const } } : x)),
+      { role: "user", content: t("ask.confirmNoMsg"), meta: true },
+      { role: "assistant", content: t("ask.confirmNoReply"), meta: true },
+    ]);
+    setTimeout(() => inputRef.current?.focus(), 50);
   }
 
   return (
@@ -129,7 +224,20 @@ export default function AskPage() {
         {msgs.map((m, i) => (
           <li key={i} className={m.role === "user" ? "flex justify-end" : ""}>
             <div className={m.role === "user" ? "max-w-[85%] rounded-2xl bg-brand px-4 py-2.5 text-sm text-brand-ink" : "card"}>
+              {m.confirm && (
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">{t("ask.confirmTitle")}</p>
+              )}
               <p className={`whitespace-pre-wrap text-sm leading-7 ${m.error ? "text-muted" : ""}`} dir="auto">{m.content}</p>
+              {m.confirm && m.confirm.state === "pending" && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <button className="btn btn-primary" disabled={busy} onClick={() => confirmYes(i, m.confirm!)}>
+                    {t("ask.confirmYes")}
+                  </button>
+                  <button className="btn" disabled={busy} onClick={() => confirmNo(i)}>
+                    {t("ask.confirmNo")}
+                  </button>
+                </div>
+              )}
               {m.verses && m.verses.length > 0 && (
                 <div className="mt-3 border-t border-line pt-3">
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("ask.refQuran")}</p>
@@ -193,7 +301,15 @@ export default function AskPage() {
         }}
         className="sticky bottom-20 mt-6 flex gap-2 sm:bottom-4"
       >
-        <input className="input shadow-sm" value={q} maxLength={500} dir="auto" onChange={(e) => setQ(e.target.value)} placeholder={t("ask.placeholder")} />
+        <input
+          ref={inputRef}
+          className="input shadow-sm"
+          value={q}
+          maxLength={500}
+          dir="auto"
+          onChange={(e) => setQ(e.target.value)}
+          placeholder={t("ask.placeholder")}
+        />
         <button
           type="button"
           onClick={toggleMic}

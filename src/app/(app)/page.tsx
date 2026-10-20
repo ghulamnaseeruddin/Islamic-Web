@@ -147,4 +147,42 @@ export default function HomePage() {
               <span dir="ltr">{Math.min(todayAyahs, settings.dailyGoalAyahs)} / {settings.dailyGoalAyahs}</span>
             </div>
             <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-line">
-              <div
+              <div className="h-full bg-brand" style={{ width: `${Math.min(100, (todayAyahs / Math.max(1, settings.dailyGoalAyahs)) * 100)}%` }} />
+            </div>
+          </div>
+          {streak > 0 && <p className="mt-3 text-xs text-muted">{t("home.streak", { n: streak })}</p>}
+        </div>
+      </div>
+
+      <div className="card mt-4">
+        <p className="text-xs text-muted">{t("home.ayahOfDay")}</p>
+        {daily === undefined && <div className="mt-4 flex justify-center"><span className="spinner" /></div>}
+        {daily === null && <p className="mt-2 text-sm text-muted">{t("common.error")}</p>}
+        {daily && (
+          <>
+            <p className="font-arabic mt-3 leading-[2.1]" dir="rtl" lang="ar" style={{ fontSize: Math.max(22, settings.arabicFontSize - 4) }}>
+              {daily.arabic}
+            </p>
+            {daily.translations[trId] && (
+              <p className={`mt-2 ${trId.startsWith("ur") ? "font-urdu leading-[2.2]" : "text-sm leading-7"}`} dir={trId.startsWith("ur") ? "rtl" : "ltr"}>
+                {daily.translations[trId]}
+              </p>
+            )}
+            <Link href={`/quran/${daily.surah}#a${daily.ayah}`} className="mt-3 inline-block text-xs text-brand underline" dir="ltr">
+              {daily.surahName} {daily.surah}:{daily.ayah}
+            </Link>
+          </>
+        )}
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
+        {tiles.map((x) => (
+          <Link key={x.href} href={x.href} className="flex flex-col items-center gap-2 rounded-2xl border border-line bg-surface px-2 py-4 text-xs hover:bg-soft">
+            <Icon name={x.icon} className="h-5 w-5 text-brand" />
+            {t(x.key)}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

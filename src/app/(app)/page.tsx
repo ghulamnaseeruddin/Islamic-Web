@@ -17,9 +17,10 @@ const DAILY = [
   "16:97", "24:35", "29:69", "39:53", "40:60", "65:2", "65:3", "94:5", "94:6", "103:1", "112:1",
 ];
 
-// The verse written around the logo: Surah Aal-Imran 3:103
-const LOGO_VERSE = "3:103";
-const LOGO_VERSE_ARABIC = "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا";
+// Only the part of the verse that is written around the logo: Surah Aal-Imran 3:103 (first part)
+const LOGO_ARABIC = "وَٱعْتَصِمُوا۟ بِحَبْلِ ٱللَّهِ جَمِيعًۭا وَلَا تَفَرَّقُوا۟ ۚ";
+const LOGO_URDU = "اور سب مل کر اللہ کی رسی کو مضبوطی سے پکڑے رکھو اور تفرقے میں نہ پڑو۔";
+const LOGO_ENGLISH = "And hold firmly to the rope of Allah all together and do not become divided";
 
 function dayIndex() {
   const d = new Date();
@@ -33,7 +34,6 @@ export default function HomePage() {
   const [name, setName] = useState("");
   const [last, setLast] = useState<{ surah: number; ayah: number } | null>(null);
   const [daily, setDaily] = useState<AyahBundle | null | undefined>(undefined);
-  const [hero, setHero] = useState<AyahBundle | null>(null);
   const [streak, setStreak] = useState(0);
   const [todayAyahs, setTodayAyahs] = useState(0);
 
@@ -66,12 +66,6 @@ export default function HomePage() {
     fetchAyah(ref, [trId]).then(setDaily);
   }, [ready, trId]);
 
-  useEffect(() => {
-    fetchAyah(LOGO_VERSE, ["en.sahih", "ur.jalandhry"])
-      .then((b) => setHero(b ?? null))
-      .catch(() => setHero(null));
-  }, []);
-
   const place = resolvePlace(settings, lang);
   const next = nextPrayer(now, place, settings.prayerMethod, settings.asr);
   const hour = now.getHours();
@@ -103,20 +97,16 @@ export default function HomePage() {
         </div>
         <div className="card min-w-0 text-center">
           <p className="font-arabic leading-[2.1] text-2xl sm:text-3xl" dir="rtl" lang="ar">
-            {hero?.arabic ?? LOGO_VERSE_ARABIC}
+            {LOGO_ARABIC}
           </p>
-          {hero?.translations["ur.jalandhry"] && (
-            <p className="font-urdu mt-3 leading-[2.2]" dir="rtl" lang="ur">
-              {hero.translations["ur.jalandhry"]}
-            </p>
-          )}
-          {hero?.translations["en.sahih"] && (
-            <p className="mt-3 text-sm leading-7 text-muted" dir="ltr" lang="en">
-              {hero.translations["en.sahih"]}
-            </p>
-          )}
+          <p className="font-urdu mt-3 leading-[2.2]" dir="rtl" lang="ur">
+            {LOGO_URDU}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted" dir="ltr" lang="en">
+            {LOGO_ENGLISH}
+          </p>
           <Link href="/quran/3#a103" className="mt-4 inline-block text-xs text-brand underline" dir="ltr">
-            {hero?.surahName ?? "Aal-Imran"} · {t("ask.surah")} 3, {t("ask.ayah")} 103 ·{" "}
+            Aal-Imran · {t("ask.surah")} 3, {t("ask.ayah")} 103 ·{" "}
             <span className="font-arabic" lang="ar">سورة آل عمران</span>
           </Link>
         </div>
@@ -157,42 +147,4 @@ export default function HomePage() {
               <span dir="ltr">{Math.min(todayAyahs, settings.dailyGoalAyahs)} / {settings.dailyGoalAyahs}</span>
             </div>
             <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-line">
-              <div className="h-full bg-brand" style={{ width: `${Math.min(100, (todayAyahs / Math.max(1, settings.dailyGoalAyahs)) * 100)}%` }} />
-            </div>
-          </div>
-          {streak > 0 && <p className="mt-3 text-xs text-muted">{t("home.streak", { n: streak })}</p>}
-        </div>
-      </div>
-
-      <div className="card mt-4">
-        <p className="text-xs text-muted">{t("home.ayahOfDay")}</p>
-        {daily === undefined && <div className="mt-4 flex justify-center"><span className="spinner" /></div>}
-        {daily === null && <p className="mt-2 text-sm text-muted">{t("common.error")}</p>}
-        {daily && (
-          <>
-            <p className="font-arabic mt-3 leading-[2.1]" dir="rtl" lang="ar" style={{ fontSize: Math.max(22, settings.arabicFontSize - 4) }}>
-              {daily.arabic}
-            </p>
-            {daily.translations[trId] && (
-              <p className={`mt-2 ${trId.startsWith("ur") ? "font-urdu leading-[2.2]" : "text-sm leading-7"}`} dir={trId.startsWith("ur") ? "rtl" : "ltr"}>
-                {daily.translations[trId]}
-              </p>
-            )}
-            <Link href={`/quran/${daily.surah}#a${daily.ayah}`} className="mt-3 inline-block text-xs text-brand underline" dir="ltr">
-              {daily.surahName} {daily.surah}:{daily.ayah}
-            </Link>
-          </>
-        )}
-      </div>
-
-      <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
-        {tiles.map((x) => (
-          <Link key={x.href} href={x.href} className="flex flex-col items-center gap-2 rounded-2xl border border-line bg-surface px-2 py-4 text-xs hover:bg-soft">
-            <Icon name={x.icon} className="h-5 w-5 text-brand" />
-            {t(x.key)}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+              <div

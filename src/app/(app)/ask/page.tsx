@@ -26,10 +26,26 @@ function tl(l: Lang, key: TKey): string {
   return dictionary[l][key] ?? dictionary.en[key] ?? key;
 }
 
+// English and Urdu together
+function both(key: TKey): string {
+  return `${tl("en", key)}\n${tl("ur", key)}`;
+}
+function Both({ k }: { k: TKey }) {
+  return (
+    <>
+      <span>{tl("en", k)}</span>
+      <span className="mx-1.5 opacity-50">·</span>
+      <span dir="rtl" lang="ur" className="font-urdu">{tl("ur", k)}</span>
+    </>
+  );
+}
+
 type Hist = { role: "user" | "assistant"; content: string };
 type Confirm = {
   question: string;
   understanding: string;
+  en: string; // restatement in English
+  ur: string; // restatement in Urdu
   englishQuery: string;
   history: Hist[];
   rl: Lang; // language of the question: the card, buttons and replies use it
@@ -162,6 +178,8 @@ export default function AskPage() {
             confirm: {
               question,
               understanding: j.understanding,
+              en: j.understandingEn || j.understanding,
+              ur: j.understandingUr || j.understanding,
               englishQuery: j.englishQuery || question,
               history,
               rl: j.replyLang === "ur" ? "ur" : j.replyLang === "en" ? "en" : lang,
@@ -184,7 +202,7 @@ export default function AskPage() {
     if (busy) return;
     setMsgs((m) => [
       ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "yes" as const } } : x)),
-      { role: "user", content: tl(c.rl, "ask.confirmYesMsg"), meta: true },
+      { role: "user", content: both("ask.confirmYesMsg"), meta: true },
     ]);
     setBusy(true);
     try {
@@ -215,8 +233,8 @@ export default function AskPage() {
     if (busy) return;
     setMsgs((m) => [
       ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "no" as const } } : x)),
-      { role: "user", content: tl(rl, "ask.confirmNoMsg"), meta: true },
-      { role: "assistant", content: tl(rl, "ask.confirmNoReply"), meta: true },
+      { role: "user", content: both("ask.confirmNoMsg"), meta: true },
+      { role: "assistant", content: both("ask.confirmNoReply"), meta: true },
     ]);
     setTimeout(() => inputRef.current?.focus(), 50);
   }
@@ -239,16 +257,29 @@ export default function AskPage() {
           <li key={i} className={m.role === "user" ? "flex justify-end" : ""}>
             <div className={m.role === "user" ? "max-w-[85%] rounded-2xl bg-brand px-4 py-2.5 text-sm text-brand-ink" : "card"}>
               {m.confirm && (
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">{tl(m.confirm.rl, "ask.confirmTitle")}</p>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted"><Both k="ask.confirmTitle" /></p>
               )}
-              <p className={`whitespace-pre-wrap text-sm leading-7 ${m.error ? "text-muted" : ""}`} dir="auto">{m.content}</p>
+              {m.confirm ? (
+                <div className="space-y-1">
+                  <p className="text-sm leading-7" dir="ltr" lang="en">{m.confirm.en}</p>
+                  <p className="font-urdu text-sm leading-loose" dir="rtl" lang="ur">{m.confirm.ur}</p>
+                </div>
+              ) : m.meta ? (
+                <div className="space-y-1">
+                  {m.content.split("\n").map((line, k) => (
+                    <p key={k} className="text-sm leading-7" dir="auto">{line}</p>
+                  ))}
+                </div>
+              ) : (
+                <p className={`whitespace-pre-wrap text-sm leading-7 ${m.error ? "text-muted" : ""}`} dir="auto">{m.content}</p>
+              )}
               {m.confirm && m.confirm.state === "pending" && (
-                <div className="mt-3 flex flex-wrap gap-2" dir={m.confirm.rl === "ur" ? "rtl" : "ltr"}>
+                <div className="mt-3 flex flex-wrap gap-2" dir="ltr">
                   <button className="btn btn-primary" disabled={busy} onClick={() => confirmYes(i, m.confirm!)}>
-                    {tl(m.confirm.rl, "ask.confirmYes")}
+                    <Both k="ask.confirmYes" />
                   </button>
                   <button className="btn" disabled={busy} onClick={() => confirmNo(i, m.confirm!.rl)}>
-                    {tl(m.confirm.rl, "ask.confirmNo")}
+                    <Both k="ask.confirmNo" />
                   </button>
                 </div>
               )}

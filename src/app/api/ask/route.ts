@@ -9,10 +9,11 @@ export const maxDuration = 60;
 
 // STEP 1: understand the question and restate it, so the user can confirm it.
 const UNDERSTAND_SYSTEM = (lang: "en" | "ur") => `You are the first step of "Ask Noor", an Islamic study helper. A user typed a question. It may be in Urdu, Roman Urdu (Urdu in English letters), Arabic, English or another language. It may be very short (even one word), misspelled, or vague. Work out what the user most likely wants to know. Reply with JSON only:
-{"off_topic": boolean, "language": "ur" | "en", "understanding": string, "english_query": string}
+{"off_topic": boolean, "language": "ur" | "en", "understanding_en": string, "understanding_ur": string, "english_query": string}
 - off_topic: true only if the question clearly has nothing to do with Islam, the Qur'an or the Sunnah. A single word or a misspelled word that could be an Islamic topic is NOT off topic.
 - language: "ur" if the user wrote in Urdu script or Roman Urdu. Otherwise "en".
-- understanding: ONE short sentence that restates what you think the user wants to know, written from the user's point of view in the user's own language: simple Urdu script (for example "آپ جاننا چاہتے ہیں کہ قرآن و سنت میں ... کے بارے میں کیا کہا گیا ہے؟") if they wrote Urdu or Roman Urdu, simple English (for example "You want to know what the Qur'an and Sunnah say about ...") if they wrote English. If you cannot tell the language, use ${lang === "ur" ? "Urdu script" : "English"}.
+- understanding_en: ONE short sentence in simple English that restates what you think the user wants to know, from the user's point of view (for example "You want to know what the Qur'an and Sunnah say about ...").
+- understanding_ur: the SAME sentence in simple Urdu script (for example "آپ جاننا چاہتے ہیں کہ قرآن و سنت میں ... کے بارے میں کیا کہا گیا ہے؟"). Both sentences must say exactly the same thing. If you cannot tell the user's language, ${lang === "ur" ? "the Urdu one is the main one" : "the English one is the main one"}.
 - english_query: the same question in clear English, used for searching.
 IMPORTANT: Never ask the user a question and never ask them to clarify in this step. Even when the text is short, vague, misspelled, or has several meanings, always give your single best guess of what they want to know, fixing spelling mistakes (for example "zinahhhyg" most likely means "zina"). The user will press "No" if your guess is wrong. For a single word or topic, restate it as "what the Qur'an and Sunnah say about <topic>". Use the earlier messages for context when the question is a follow-up. Never answer the question in this step.`;
 
@@ -108,15 +109,24 @@ export async function POST(req: Request) {
           off_topic?: boolean;
           clear?: boolean;
           language?: unknown;
-          understanding?: unknown;
+          understanding_en?: unknown;
+          understanding_ur?: unknown;
           english_query?: unknown;
           clarify?: unknown;
         }>(res.text) ?? {};
       const replyLang: "en" | "ur" = u.language === "ur" ? "ur" : u.language === "en" ? "en" : lang;
       if (u.off_topic === true) return NextResponse.json({ offTopic: true, replyLang });
-      const understanding = clip(u.understanding, 400) || question;
+      const understandingEn = clip(u.understanding_en, 400);
+      const understandingUr = clip(u.understanding_ur, 400);
+      const understanding = (replyLang === "ur" ? understandingUr || understandingEn : understandingEn || understandingUr) || question;
       const englishQuery = clip(u.english_query, 400) || question;
-      return NextResponse.json({ understanding, englishQuery, replyLang });
+      return NextResponse.json({
+        understanding,
+        understandingEn: understandingEn || understanding,
+        understandingUr: understandingUr || understanding,
+        englishQuery,
+        replyLang,
+      });
     } catch (e) {
       return failure(e);
     }

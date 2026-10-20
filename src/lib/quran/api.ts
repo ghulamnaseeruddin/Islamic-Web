@@ -93,6 +93,76 @@ export async function fetchSurah(
   return { arabic, translations, audio };
 }
 
+export type JuzItem = {
+  surah: number;
+  n: number; // number in the surah
+  arabic: string;
+  translations: { id: string; text: string }[];
+  audio?: string;
+};
+
+/** One juz (para) = all its verses, even across several surahs. Uses the juz endpoint: few requests. */
+export async function fetchJuz(
+  juz: number,
+  translationIds: string[],
+  reciter: string,
+  script: "uthmani" | "indopak" = "uthmani",
+): Promise<JuzItem[]> {
+  const arabicReq = getJson(`${BASE}/juz/${juz}/quran-uthmani`);
+  const transReqs = translationIds.map((id) => getJson(`${BASE}/juz/${juz}/${id}`));
+  const audioReq = getJson(`${BASE}/juz/${juz}/${reciter}`);
+
+  const arabicJson = await arabicReq;
+  const base = arabicJson.data.ayahs as (Ayah & { surah: { number: number } })[];
+  const items: JuzItem[] = base.map((a) => ({
+    surah: a.surah.number,
+    n: a.numberInSurah,
+    arabic: stripBismillah(a.surah.number, a.numberInSurah, a.text),
+    translations: [],
+  }));
+
+  if (script === "indopak") {
+    try {
+      const j = await getJson(`https://api.quran.com/api/v4/quran/verses/indopak?juz_number=${juz}`);
+      const map = new Map<string, string>();
+      for (const v of j.verses as { verse_key: string; text_indopak: string }[]) map.set(v.verse_key, v.text_indopak);
+      if (map.size === items.length) {
+        items.forEach((it) => {
+          const txt = map.get(`${it.surah}:${it.n}`);
+          if (txt) it.arabic = txt;
+        });
+      }
+    } catch {
+      /* keep standard script */
+    }
+  }
+
+  const transResults = await Promise.allSettled(transReqs);
+  transResults.forEach((r, i) => {
+    if (r.status !== "fulfilled") return;
+    const byNumber = new Map<number, string>();
+    for (const a of r.value.data.ayahs as Ayah[]) byNumber.set(a.number, a.text);
+    base.forEach((b, k) => {
+      const text = byNumber.get(b.number);
+      if (text) items[k].translations.push({ id: translationIds[i], text });
+    });
+  });
+
+  try {
+    const audioJson = await audioReq;
+    const byNumber = new Map<number, string>();
+    for (const a of audioJson.data.ayahs as Ayah[]) if (a.audio) byNumber.set(a.number, a.audio);
+    base.forEach((b, k) => {
+      const url = byNumber.get(b.number);
+      if (url) items[k].audio = url;
+    });
+  } catch {
+    /* audio is optional */
+  }
+
+  return items;
+}
+
 export type SearchMatch = {
   surah: number;
   surahName: string;

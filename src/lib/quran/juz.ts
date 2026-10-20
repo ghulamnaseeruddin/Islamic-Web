@@ -1,5 +1,7 @@
 // The 30 juz (para) of the Qur'an: where each one starts (standard 15-line Madani mushaf division).
 // n = juz number, surah / ayah = first verse, name = the opening words used as the para's name.
+import { SURAHS } from "./surahs";
+
 export type JuzInfo = { n: number; surah: number; ayah: number; name: string };
 
 const RAW: [number, number, string][] = [
@@ -36,3 +38,28 @@ const RAW: [number, number, string][] = [
 ];
 
 export const JUZ: JuzInfo[] = RAW.map(([surah, ayah, name], i) => ({ n: i + 1, surah, ayah, name }));
+
+export type VersePos = { surah: number; ayah: number };
+
+/** First and last verse of a juz. A juz ends right before the next juz starts. */
+export function juzRange(n: number): { from: VersePos; to: VersePos } {
+  const j = JUZ[n - 1];
+  const nx = JUZ[n];
+  let to: VersePos;
+  if (!nx) to = { surah: 114, ayah: SURAHS[113].ayahs };
+  else if (nx.ayah === 1) to = { surah: nx.surah - 1, ayah: SURAHS[nx.surah - 2].ayahs };
+  else to = { surah: nx.surah, ayah: nx.ayah - 1 };
+  return { from: { surah: j.surah, ayah: j.ayah }, to };
+}
+
+function absIndex(p: VersePos): number {
+  let total = 0;
+  for (let i = 0; i < p.surah - 1; i++) total += SURAHS[i].ayahs;
+  return total + p.ayah;
+}
+
+/** Number of verses in a juz. */
+export function juzAyahCount(n: number): number {
+  const r = juzRange(n);
+  return absIndex(r.to) - absIndex(r.from) + 1;
+}

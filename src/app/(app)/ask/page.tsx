@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { useI18n } from "@/lib/i18n";
+import { dictionary, type Lang, type TKey } from "@/lib/dictionary";
 import { getSurah } from "@/lib/quran/surahs";
 import { getHadithBook } from "@/lib/hadith/books";
 
@@ -20,12 +21,18 @@ type HadithRef = {
   urdu?: string;
   sectionUr?: string;
 };
+// Text in the language of the QUESTION (not only the app language)
+function tl(l: Lang, key: TKey): string {
+  return dictionary[l][key] ?? dictionary.en[key] ?? key;
+}
+
 type Hist = { role: "user" | "assistant"; content: string };
 type Confirm = {
   question: string;
   understanding: string;
   englishQuery: string;
   history: Hist[];
+  rl: Lang; // language of the question: the card, buttons and replies use it
   state: "pending" | "yes" | "no" | "dismissed";
 };
 type Msg = {
@@ -115,9 +122,9 @@ export default function AskPage() {
     return { res, j };
   }
 
-  function addError(res: Response, j: any) {
+  function addError(res: Response, j: any, rl: Lang = lang) {
     if (res.status === 429) {
-      setMsgs((m) => [...m, { role: "assistant", content: t("ask.limit"), error: true }]);
+      setMsgs((m) => [...m, { role: "assistant", content: tl(rl, "ask.limit"), error: true }]);
     } else {
       setMsgs((m) => [
         ...m,
@@ -143,7 +150,7 @@ export default function AskPage() {
       if (!res.ok) {
         addError(res, j);
       } else if (j.offTopic) {
-        setMsgs((m) => [...m, { role: "assistant", content: t("ask.offTopic"), error: true }]);
+        setMsgs((m) => [...m, { role: "assistant", content: tl(j.replyLang === "ur" ? "ur" : j.replyLang === "en" ? "en" : lang, "ask.offTopic"), error: true }]);
       } else if (j.clarify) {
         setMsgs((m) => [...m, { role: "assistant", content: j.clarify }]);
       } else if (j.understanding) {
@@ -152,7 +159,14 @@ export default function AskPage() {
           {
             role: "assistant",
             content: j.understanding,
-            confirm: { question, understanding: j.understanding, englishQuery: j.englishQuery || question, history, state: "pending" },
+            confirm: {
+              question,
+              understanding: j.understanding,
+              englishQuery: j.englishQuery || question,
+              history,
+              rl: j.replyLang === "ur" ? "ur" : j.replyLang === "en" ? "en" : lang,
+              state: "pending",
+            },
           },
         ]);
       } else {
@@ -170,7 +184,7 @@ export default function AskPage() {
     if (busy) return;
     setMsgs((m) => [
       ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "yes" as const } } : x)),
-      { role: "user", content: t("ask.confirmYesMsg"), meta: true },
+      { role: "user", content: tl(c.rl, "ask.confirmYesMsg"), meta: true },
     ]);
     setBusy(true);
     try {
@@ -179,13 +193,13 @@ export default function AskPage() {
         question: c.question,
         understanding: c.understanding,
         englishQuery: c.englishQuery,
-        lang,
+        lang: c.rl,
         history: c.history,
       });
       if (!res.ok) {
-        addError(res, j);
+        addError(res, j, c.rl);
       } else if (j.offTopic) {
-        setMsgs((m) => [...m, { role: "assistant", content: t("ask.offTopic"), error: true }]);
+        setMsgs((m) => [...m, { role: "assistant", content: tl(c.rl, "ask.offTopic"), error: true }]);
       } else {
         setMsgs((m) => [...m, { role: "assistant", content: j.answer, verses: j.verses, hadiths: j.hadiths }]);
       }
@@ -197,12 +211,12 @@ export default function AskPage() {
   }
 
   // The user says "No, that is not what I meant". Ask them to explain.
-  function confirmNo(i: number) {
+  function confirmNo(i: number, rl: Lang) {
     if (busy) return;
     setMsgs((m) => [
       ...m.map((x, idx) => (idx === i && x.confirm ? { ...x, confirm: { ...x.confirm, state: "no" as const } } : x)),
-      { role: "user", content: t("ask.confirmNoMsg"), meta: true },
-      { role: "assistant", content: t("ask.confirmNoReply"), meta: true },
+      { role: "user", content: tl(rl, "ask.confirmNoMsg"), meta: true },
+      { role: "assistant", content: tl(rl, "ask.confirmNoReply"), meta: true },
     ]);
     setTimeout(() => inputRef.current?.focus(), 50);
   }
@@ -225,16 +239,16 @@ export default function AskPage() {
           <li key={i} className={m.role === "user" ? "flex justify-end" : ""}>
             <div className={m.role === "user" ? "max-w-[85%] rounded-2xl bg-brand px-4 py-2.5 text-sm text-brand-ink" : "card"}>
               {m.confirm && (
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">{t("ask.confirmTitle")}</p>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">{tl(m.confirm.rl, "ask.confirmTitle")}</p>
               )}
               <p className={`whitespace-pre-wrap text-sm leading-7 ${m.error ? "text-muted" : ""}`} dir="auto">{m.content}</p>
               {m.confirm && m.confirm.state === "pending" && (
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-2" dir={m.confirm.rl === "ur" ? "rtl" : "ltr"}>
                   <button className="btn btn-primary" disabled={busy} onClick={() => confirmYes(i, m.confirm!)}>
-                    {t("ask.confirmYes")}
+                    {tl(m.confirm.rl, "ask.confirmYes")}
                   </button>
-                  <button className="btn" disabled={busy} onClick={() => confirmNo(i)}>
-                    {t("ask.confirmNo")}
+                  <button className="btn" disabled={busy} onClick={() => confirmNo(i, m.confirm!.rl)}>
+                    {tl(m.confirm.rl, "ask.confirmNo")}
                   </button>
                 </div>
               )}

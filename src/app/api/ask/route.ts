@@ -9,8 +9,9 @@ export const maxDuration = 60;
 
 // STEP 1: understand the question and restate it, so the user can confirm it.
 const UNDERSTAND_SYSTEM = (lang: "en" | "ur") => `You are the first step of "Ask Noor", an Islamic study helper. A user typed a question. It may be in Urdu, Roman Urdu (Urdu in English letters), Arabic, English or another language, and it may have spelling mistakes or vague words. Work out exactly what the user means. Reply with JSON only:
-{"off_topic": boolean, "clear": boolean, "understanding": string, "english_query": string, "clarify": string}
+{"off_topic": boolean, "clear": boolean, "language": "ur" | "en", "understanding": string, "english_query": string, "clarify": string}
 - off_topic: true only if the question has nothing to do with Islam, the Qur'an or the Sunnah.
+- language: "ur" if the user wrote in Urdu script or Roman Urdu (Urdu written in English letters). Otherwise "en".
 - clear: true if you are confident what the user wants to know. false if the question is too vague or has several very different meanings.
 - understanding: ONE short sentence that restates the question from the user's point of view, in the user's own language: simple Urdu script (for example "آپ جاننا چاہتے ہیں کہ ...") if they wrote Urdu or Roman Urdu, simple English (for example "You want to know ...") if they wrote English. If you cannot tell, use ${lang === "ur" ? "Urdu script" : "English"}. Do not answer the question.
 - english_query: the same question in clear English, used for searching.
@@ -108,16 +109,18 @@ export async function POST(req: Request) {
         parseJsonLoose<{
           off_topic?: boolean;
           clear?: boolean;
+          language?: unknown;
           understanding?: unknown;
           english_query?: unknown;
           clarify?: unknown;
         }>(res.text) ?? {};
-      if (u.off_topic === true) return NextResponse.json({ offTopic: true });
+      const replyLang: "en" | "ur" = u.language === "ur" ? "ur" : u.language === "en" ? "en" : lang;
+      if (u.off_topic === true) return NextResponse.json({ offTopic: true, replyLang });
       const clarify = clip(u.clarify, 300);
-      if (u.clear === false && clarify) return NextResponse.json({ clarify });
+      if (u.clear === false && clarify) return NextResponse.json({ clarify, replyLang });
       const understanding = clip(u.understanding, 400) || question;
       const englishQuery = clip(u.english_query, 400) || question;
-      return NextResponse.json({ understanding, englishQuery });
+      return NextResponse.json({ understanding, englishQuery, replyLang });
     } catch (e) {
       return failure(e);
     }

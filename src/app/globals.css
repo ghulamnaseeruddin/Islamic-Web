@@ -82,8 +82,8 @@ body {
   color: var(--c-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 /* Urdu interface uses Naskh (compact). Nastaliq is used only for Urdu translation text. */

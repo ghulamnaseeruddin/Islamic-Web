@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Icon, type IconName } from "@/components/icons";
-import { LogoMark } from "@/components/Logo";
 import { useI18n } from "@/lib/i18n";
 import { formatCountdown, formatTime, hijriDate, nextPrayer, resolvePlace } from "@/lib/prayer";
 import { fetchAyah, type AyahBundle } from "@/lib/quran/api";
@@ -18,6 +17,10 @@ const DAILY = [
   "16:97", "24:35", "29:69", "39:53", "40:60", "65:2", "65:3", "94:5", "94:6", "103:1", "112:1",
 ];
 
+// The verse written around the logo: Surah Aal-Imran 3:103
+const LOGO_VERSE = "3:103";
+const LOGO_VERSE_ARABIC = "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا";
+
 function dayIndex() {
   const d = new Date();
   return Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 86400000);
@@ -30,6 +33,7 @@ export default function HomePage() {
   const [name, setName] = useState("");
   const [last, setLast] = useState<{ surah: number; ayah: number } | null>(null);
   const [daily, setDaily] = useState<AyahBundle | null | undefined>(undefined);
+  const [hero, setHero] = useState<AyahBundle | null>(null);
   const [streak, setStreak] = useState(0);
   const [todayAyahs, setTodayAyahs] = useState(0);
 
@@ -62,6 +66,12 @@ export default function HomePage() {
     fetchAyah(ref, [trId]).then(setDaily);
   }, [ready, trId]);
 
+  useEffect(() => {
+    fetchAyah(LOGO_VERSE, ["en.sahih", "ur.jalandhry"])
+      .then((b) => setHero(b ?? null))
+      .catch(() => setHero(null));
+  }, []);
+
   const place = resolvePlace(settings, lang);
   const next = nextPrayer(now, place, settings.prayerMethod, settings.asr);
   const hour = now.getHours();
@@ -79,8 +89,40 @@ export default function HomePage() {
 
   return (
     <div>
-      <LogoMark size={88} />
-      <p className="font-arabic mt-3 text-center text-2xl text-accent" dir="rtl" lang="ar">السلام علیکم ورحمة الله</p>
+      {/* Full logo on the left, its verse (Arabic, Urdu, English) on the right. Stacks on phones. */}
+      <section className="grid items-center gap-5 md:grid-cols-2 md:gap-10" dir="ltr">
+        <div className="flex justify-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Noor ul Ilm — Light of Islam"
+            width={512}
+            height={512}
+            className="h-auto w-44 drop-shadow-xl sm:w-56 md:w-72 lg:w-80"
+          />
+        </div>
+        <div className="card min-w-0 text-center">
+          <p className="font-arabic leading-[2.1] text-2xl sm:text-3xl" dir="rtl" lang="ar">
+            {hero?.arabic ?? LOGO_VERSE_ARABIC}
+          </p>
+          {hero?.translations["ur.jalandhry"] && (
+            <p className="font-urdu mt-3 leading-[2.2]" dir="rtl" lang="ur">
+              {hero.translations["ur.jalandhry"]}
+            </p>
+          )}
+          {hero?.translations["en.sahih"] && (
+            <p className="mt-3 text-sm leading-7 text-muted" dir="ltr" lang="en">
+              {hero.translations["en.sahih"]}
+            </p>
+          )}
+          <Link href="/quran/3#a103" className="mt-4 inline-block text-xs text-brand underline" dir="ltr">
+            {hero?.surahName ?? "Aal-Imran"} · {t("ask.surah")} 3, {t("ask.ayah")} 103 ·{" "}
+            <span className="font-arabic" lang="ar">سورة آل عمران</span>
+          </Link>
+        </div>
+      </section>
+
+      <p className="font-arabic mt-6 text-center text-2xl text-accent" dir="rtl" lang="ar">السلام علیکم ورحمة الله</p>
       <h1 className="mt-2 text-center text-2xl font-semibold">
         {greet}
         {name ? `, ${name}` : ""}

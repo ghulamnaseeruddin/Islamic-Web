@@ -8,15 +8,13 @@ import { createClient } from "@/lib/supabase/server";
 export const maxDuration = 60;
 
 // STEP 1: understand the question and restate it, so the user can confirm it.
-const UNDERSTAND_SYSTEM = (lang: "en" | "ur") => `You are the first step of "Ask Noor", an Islamic study helper. A user typed a question. It may be in Urdu, Roman Urdu (Urdu in English letters), Arabic, English or another language, and it may have spelling mistakes or vague words. Work out exactly what the user means. Reply with JSON only:
-{"off_topic": boolean, "clear": boolean, "language": "ur" | "en", "understanding": string, "english_query": string, "clarify": string}
-- off_topic: true only if the question has nothing to do with Islam, the Qur'an or the Sunnah.
-- language: "ur" if the user wrote in Urdu script or Roman Urdu (Urdu written in English letters). Otherwise "en".
-- clear: true if you are confident what the user wants to know. false if the question is too vague or has several very different meanings.
-- understanding: ONE short sentence that restates the question from the user's point of view, in the user's own language: simple Urdu script (for example "آپ جاننا چاہتے ہیں کہ ...") if they wrote Urdu or Roman Urdu, simple English (for example "You want to know ...") if they wrote English. If you cannot tell, use ${lang === "ur" ? "Urdu script" : "English"}. Do not answer the question.
+const UNDERSTAND_SYSTEM = (lang: "en" | "ur") => `You are the first step of "Ask Noor", an Islamic study helper. A user typed a question. It may be in Urdu, Roman Urdu (Urdu in English letters), Arabic, English or another language. It may be very short (even one word), misspelled, or vague. Work out what the user most likely wants to know. Reply with JSON only:
+{"off_topic": boolean, "language": "ur" | "en", "understanding": string, "english_query": string}
+- off_topic: true only if the question clearly has nothing to do with Islam, the Qur'an or the Sunnah. A single word or a misspelled word that could be an Islamic topic is NOT off topic.
+- language: "ur" if the user wrote in Urdu script or Roman Urdu. Otherwise "en".
+- understanding: ONE short sentence that restates what you think the user wants to know, written from the user's point of view in the user's own language: simple Urdu script (for example "آپ جاننا چاہتے ہیں کہ قرآن و سنت میں ... کے بارے میں کیا کہا گیا ہے؟") if they wrote Urdu or Roman Urdu, simple English (for example "You want to know what the Qur'an and Sunnah say about ...") if they wrote English. If you cannot tell the language, use ${lang === "ur" ? "Urdu script" : "English"}.
 - english_query: the same question in clear English, used for searching.
-- clarify: only when clear is false: ONE short, polite question in the user's language that asks what you need to know.
-Use the earlier messages for context when the question is a follow-up. Never answer the question in this step.`;
+IMPORTANT: Never ask the user a question and never ask them to clarify in this step. Even when the text is short, vague, misspelled, or has several meanings, always give your single best guess of what they want to know, fixing spelling mistakes (for example "zinahhhyg" most likely means "zina"). The user will press "No" if your guess is wrong. For a single word or topic, restate it as "what the Qur'an and Sunnah say about <topic>". Use the earlier messages for context when the question is a follow-up. Never answer the question in this step.`;
 
 // STEP 2 (after the user says "yes"): find verses and hadith.
 const PLAN_SYSTEM = `You help find Quran verses and hadith for a question. Reply with JSON only:
@@ -116,8 +114,6 @@ export async function POST(req: Request) {
         }>(res.text) ?? {};
       const replyLang: "en" | "ur" = u.language === "ur" ? "ur" : u.language === "en" ? "en" : lang;
       if (u.off_topic === true) return NextResponse.json({ offTopic: true, replyLang });
-      const clarify = clip(u.clarify, 300);
-      if (u.clear === false && clarify) return NextResponse.json({ clarify, replyLang });
       const understanding = clip(u.understanding, 400) || question;
       const englishQuery = clip(u.english_query, 400) || question;
       return NextResponse.json({ understanding, englishQuery, replyLang });

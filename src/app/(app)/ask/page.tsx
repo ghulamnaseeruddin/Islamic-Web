@@ -18,9 +18,9 @@ const DAILY = [
 ];
 
 // Only the part of the verse that is written around the logo: Surah Aal-Imran 3:103 (first part)
-const LOGO_ARABIC = "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا";
+const LOGO_ARABIC = "وَٱعْتَصِمُوا۟ بِحَبْلِ ٱللَّهِ جَمِيعًۭا وَلَا تَفَرَّقُوا۟ ۚ";
 const LOGO_URDU = "اور سب مل کر اللہ کی رسی کو مضبوطی سے پکڑے رکھو اور تفرقے میں نہ پڑو۔";
-const LOGO_ENGLISH = "And hold firmly to the rope of Allah all together and do not become divided.";
+const LOGO_ENGLISH = "And hold firmly to the rope of Allah all together and do not become divided";
 
 function dayIndex() {
   const d = new Date();

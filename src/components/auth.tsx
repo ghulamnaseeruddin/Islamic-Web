@@ -118,7 +118,11 @@ export function GoogleButton({ next = "/" }: { next?: string }) {
     const { error } = await supabaseBrowser().auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+        // Inside the Windows/Linux app, login finishes in the normal browser and the
+        // callback hands a one-time code back to the app (see /auth/callback).
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(
+          navigator.userAgent.includes("NoorUlIlmDesktop") ? "/desktop-auth" : next,
+        )}`,
       },
     });
     if (error) setBusy(false);

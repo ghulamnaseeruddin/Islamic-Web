@@ -9,6 +9,20 @@ export async function GET(request: Request) {
   const nextRaw = searchParams.get("next") ?? "/";
   const next = nextRaw.startsWith("/") && !nextRaw.startsWith("//") ? nextRaw : "/";
 
+  // Login started inside the desktop app: this browser cannot finish it (the app holds the
+  // secret for this login). Hand the one-time code back to the app via noorulilm://.
+  if (nextRaw === "/desktop-auth") {
+    if (!code) return NextResponse.redirect(`${origin}/login?error=auth`);
+    const link = `noorulilm://auth?code=${encodeURIComponent(code)}`;
+    const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Noor ul Ilm</title>
+<style>body{font-family:system-ui,Arial,sans-serif;background:#f6f4ee;color:#1d2b25;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;margin:0;padding:24px}
+a{display:inline-block;margin-top:16px;background:#0f5c46;color:#fff;padding:10px 24px;border-radius:999px;text-decoration:none}</style></head>
+<body><div><h2>Noor ul Ilm</h2><p>Returning to the app… You can close this tab afterwards.</p><p dir="rtl">ایپ پر واپس جا رہے ہیں… اس کے بعد یہ ٹیب بند کر دیں۔</p>
+<a href="${link}">Open Noor ul Ilm app</a></div>
+<script>setTimeout(function(){location.href=${JSON.stringify(link)}},300)</script></body></html>`;
+    return new NextResponse(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+  }
+
   if (code) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);

@@ -7,7 +7,7 @@ import { useI18n } from "@/lib/i18n";
 import { NAV, isActive } from "@/components/Header";
 
 // On phones the main pages sit in a bar at the bottom.
-const MOBILE = ["/", "/quran", "/hadith", "/library", "/ask", "/apps", "/more"];
+const MOBILE = ["/", "/quran", "/hadith", "/library", "/ask", "/more"];
 
 export function BottomNav() {
   const { t } = useI18n();

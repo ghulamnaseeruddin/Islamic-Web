@@ -17,7 +17,6 @@ export const NAV: { href: string; key: TKey; icon: IconName }[] = [
   { href: "/azkaar", key: "nav.azkaar", icon: "tasbih" },
   { href: "/prayer", key: "nav.prayer", icon: "clock" },
   { href: "/ask", key: "nav.ask", icon: "sparkle" },
-  { href: "/apps", key: "nav.apps", icon: "download" },
   { href: "/more", key: "nav.more", icon: "grid" },
 ];
 
@@ -34,7 +33,7 @@ export function Header({ user }: { user: AppUser }) {
       <div className="mx-auto flex h-16 max-w-5xl items-center gap-3 px-4 sm:px-6">
         <Logo small />
         <nav className="ms-6 hidden items-center gap-1 lg:flex" aria-label="Main">
-          {NAV.filter((n) => n.href !== "/apps").map((n) => (
+          {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}

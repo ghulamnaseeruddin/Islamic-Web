@@ -10,6 +10,7 @@ export type Ayah = {
   text: string;
   juz?: number;
   page?: number;
+  ruku?: number; // ruku number in the whole Qur'an (from the data source)
   audio?: string;
 };
 
@@ -99,6 +100,7 @@ export type JuzItem = {
   arabic: string;
   translations: { id: string; text: string }[];
   audio?: string;
+  ruku?: number; // ruku number in the whole Qur'an; a new number means a new ruku starts here
 };
 
 /** One juz (para) = all its verses, even across several surahs. Uses the juz endpoint: few requests. */
@@ -119,6 +121,7 @@ export async function fetchJuz(
     n: a.numberInSurah,
     arabic: stripBismillah(a.surah.number, a.numberInSurah, a.text),
     translations: [],
+    ruku: typeof a.ruku === "number" ? a.ruku : undefined,
   }));
 
   if (script === "indopak") {
@@ -161,6 +164,28 @@ export async function fetchJuz(
   }
 
   return items;
+}
+
+/**
+ * Ruku (رکوع) marks inside a juz. A new ruku starts where the ruku number of the data changes.
+ * Returns, for each item index where a ruku starts: its number inside this juz (1, 2, 3 ...) and how many
+ * verses of it are in this juz. Returns an empty result when the data has no ruku numbers.
+ */
+export function rukuMarks(items: JuzItem[]): { starts: Map<number, { no: number; len: number }>; total: number } {
+  const starts = new Map<number, { no: number; len: number }>();
+  if (items.length === 0 || items.some((it) => typeof it.ruku !== "number")) return { starts, total: 0 };
+  let no = 0;
+  let startIdx = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (i === 0 || items[i].ruku !== items[i - 1].ruku) {
+      if (i > 0) starts.get(startIdx)!.len = i - startIdx;
+      no += 1;
+      startIdx = i;
+      starts.set(i, { no, len: 0 });
+    }
+  }
+  starts.get(startIdx)!.len = items.length - startIdx;
+  return { starts, total: no };
 }
 
 export type SearchMatch = {

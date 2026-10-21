@@ -9,7 +9,7 @@ import { useI18n } from "@/lib/i18n";
 import { useSettings } from "@/lib/settings";
 import { useBookmarks } from "@/lib/saved";
 import { supabaseBrowser } from "@/lib/supabase/client";
-import { fetchJuz, fetchTafsir, type JuzItem } from "@/lib/quran/api";
+import { fetchJuz, fetchTafsir, rukuMarks, type JuzItem } from "@/lib/quran/api";
 import { TAFSIRS, translationName } from "@/lib/quran/editions";
 import { JUZ, juzAyahCount, juzRange } from "@/lib/quran/juz";
 import { getSurah } from "@/lib/quran/surahs";
@@ -60,6 +60,7 @@ export function JuzReader({ juz }: { juz: number }) {
   itemsRef.current = items;
 
   const transKey = settings.translations.join(",");
+  const rukus = items ? rukuMarks(items) : { starts: new Map<number, { no: number; len: number }>(), total: 0 };
 
   // Load the juz
   useEffect(() => {
@@ -242,7 +243,10 @@ export function JuzReader({ juz }: { juz: number }) {
         <div className="min-w-0 text-center">
           <p className="font-arabic text-3xl leading-[2]" dir="rtl" lang="ar">{info.name}</p>
           <p className="text-sm font-medium">{t("quran.juz", { n: juz })}</p>
-          <p className="text-xs text-muted">{t("quran.ayahsCount", { n: juzAyahCount(juz) })}</p>
+          <p className="text-xs text-muted">
+            {t("quran.ayahsCount", { n: juzAyahCount(juz) })}
+            {rukus.total > 0 ? ` · ${t("quran.rukusCount", { n: rukus.total })}` : ""}
+          </p>
         </div>
         {next ? (
           <Link href={`/quran/juz/${next}`} className="icon-btn" aria-label={t("quran.nextJuz")}>
@@ -309,6 +313,7 @@ export function JuzReader({ juz }: { juz: number }) {
             const tafsirState = tafsirCache[key];
             const sm = getSurah(it.surah);
             const newSurah = i === 0 || items[i - 1].surah !== it.surah;
+            const rukuStart = rukus.starts.get(i);
             return (
               <li key={ref} className="list-none">
                 {newSurah && (
@@ -323,6 +328,18 @@ export function JuzReader({ juz }: { juz: number }) {
                         {BISMILLAH}
                       </p>
                     )}
+                  </div>
+                )}
+                {rukuStart && (
+                  <div className="mb-3 flex items-center gap-3 text-xs text-muted">
+                    <span className="h-px flex-1 bg-line" />
+                    <span className="flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1">
+                      <span className="font-arabic text-base text-accent" lang="ar">ع</span>
+                      <span>{t("quran.ruku", { n: rukuStart.no })}</span>
+                      <span>·</span>
+                      <span>{t("quran.ayahsCount", { n: rukuStart.len })}</span>
+                    </span>
+                    <span className="h-px flex-1 bg-line" />
                   </div>
                 )}
                 <div

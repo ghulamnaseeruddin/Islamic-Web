@@ -6,9 +6,9 @@ const PATHS: Record<string, string> = {
   hadith:
     "M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z M14 3v5h5 M9 13h6 M9 17h6",
   library:
-   "M4 4v16 M9 4v16 M14.5 5.5l3.7-1 3 14.5-3.7 1z M3 20h5",
-    mic: "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z M5 11a7 7 0 0 0 14 0 M12 18v3",
-    stop: "M7 7h10v10H7z",
+    "M4 4v16 M9 4v16 M14.5 5.5l3.7-1 3 14.5-3.7 1z M3 20h5",
+  mic: "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z M5 11a7 7 0 0 0 14 0 M12 18v3",
+  stop: "M7 7h10v10H7z",
   sparkle:
     "M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z",
   clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2",
@@ -30,6 +30,8 @@ const PATHS: Record<string, string> = {
   plus: "M12 5v14 M5 12h14",
   trash: "M4 7h16 M9 7V4h6v3 M6 7l1 13h10l1-13",
   external: "M14 4h6v6 M20 4l-9 9 M18 14v6H4V6h6",
+  monitor: "M3 5h18v11H3z M8 20h8 M12 16v4",
+  phone: "M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z M11 18h2",
   download: "M12 4v12 M7 11l5 5 5-5 M5 20h14",
   moon: "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z",
   globe: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M3 12h18 M12 3a14 14 0 0 1 0 18 M12 3a14 14 0 0 0 0 18",

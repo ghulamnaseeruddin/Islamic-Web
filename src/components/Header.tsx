@@ -17,6 +17,7 @@ export const NAV: { href: string; key: TKey; icon: IconName }[] = [
   { href: "/azkaar", key: "nav.azkaar", icon: "tasbih" },
   { href: "/prayer", key: "nav.prayer", icon: "clock" },
   { href: "/ask", key: "nav.ask", icon: "sparkle" },
+  { href: "/apps", key: "nav.apps", icon: "download" },
   { href: "/more", key: "nav.more", icon: "grid" },
 ];
 
@@ -33,7 +34,7 @@ export function Header({ user }: { user: AppUser }) {
       <div className="mx-auto flex h-16 max-w-5xl items-center gap-3 px-4 sm:px-6">
         <Logo small />
         <nav className="ms-6 hidden items-center gap-1 lg:flex" aria-label="Main">
-          {NAV.map((n) => (
+          {NAV.filter((n) => n.href !== "/apps").map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -48,6 +49,13 @@ export function Header({ user }: { user: AppUser }) {
           ))}
         </nav>
         <div className="ms-auto flex items-center gap-1.5">
+          <Link
+            href="/apps"
+            className={`btn btn-primary me-1 hidden !px-3 !py-1.5 text-sm lg:inline-flex ${isActive(path, "/apps") ? "ring-2 ring-brand/30" : ""}`}
+          >
+            <Icon name="download" className="h-4 w-4" />
+            {t("nav.downloadApps")}
+          </Link>
           <Link href="/search" className="icon-btn" aria-label={t("nav.search")}>
             <Icon name="search" />
           </Link>

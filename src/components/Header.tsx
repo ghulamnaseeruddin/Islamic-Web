@@ -51,13 +51,15 @@ export function Header({ user }: { user: AppUser }) {
         </nav>
         <div className="ms-auto flex items-center gap-1.5">
           {inApp === false && (
-            <Link
-              href="/apps"
-              className={`btn btn-primary me-1 hidden !px-3 !py-1.5 text-sm lg:inline-flex ${isActive(path, "/apps") ? "ring-2 ring-brand/30" : ""}`}
-            >
-              <Icon name="download" className="h-4 w-4" />
-              {t("nav.downloadApps")}
-            </Link>
+            <span className="me-1 hidden lg:inline-flex">
+              <Link
+                href="/apps"
+                className={`btn btn-primary !px-3 !py-1.5 text-sm ${isActive(path, "/apps") ? "ring-2 ring-brand/30" : ""}`}
+              >
+                <Icon name="download" className="h-4 w-4" />
+                {t("nav.downloadApps")}
+              </Link>
+            </span>
           )}
           <Link href="/search" className="icon-btn" aria-label={t("nav.search")}>
             <Icon name="search" />

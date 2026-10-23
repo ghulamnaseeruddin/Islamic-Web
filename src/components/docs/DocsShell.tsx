@@ -38,9 +38,9 @@ function Menu({
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search"
           aria-label="Search the docs"
-          className="input ps-9"
+          className="w-full rounded-xl border border-line bg-surface py-2.5 ps-10 pe-16 text-sm text-ink outline-none placeholder:text-muted focus:border-brand"
         />
-        <kbd className="pointer-events-none absolute end-3 top-1/2 hidden -translate-y-1/2 rounded border border-line px-1.5 text-[11px] text-muted lg:block">
+        <kbd className="pointer-events-none absolute end-3 top-1/2 hidden -translate-y-1/2 rounded border border-line px-1.5 text-[11px] text-muted md:block">
           Ctrl K
         </kbd>
       </div>
@@ -58,7 +58,7 @@ function Menu({
                       href={href}
                       onClick={onNavigate}
                       aria-current={on ? "page" : undefined}
-                      className={`block rounded-lg px-3 py-2 text-[15px] lg:py-1.5 ${
+                      className={`block rounded-lg px-3 py-2 text-[15px] md:py-1.5 ${
                         on ? "bg-soft font-medium text-ink" : "text-muted hover:text-ink"
                       }`}
                     >
@@ -79,16 +79,43 @@ function Menu({
 /** Page frame for the Docs: top bar, left menu, content, and "On this page". English only. */
 export function DocsShell({ children }: { children: React.ReactNode }) {
   const path = usePathname() ?? "";
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // phone drawer
+  const [collapsed, setCollapsed] = useState(false); // computer sidebar hidden
   const desktopInput = useRef<HTMLInputElement>(null);
   const drawerInput = useRef<HTMLInputElement>(null);
+
+  // Remember whether the sidebar was hidden on a computer.
+  useEffect(() => {
+    try {
+      setCollapsed(localStorage.getItem("docs-sidebar") === "hidden");
+    } catch {
+      /* storage blocked: start with the sidebar shown */
+    }
+  }, []);
+  function toggleMenu() {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      setCollapsed((v) => {
+        try {
+          localStorage.setItem("docs-sidebar", v ? "shown" : "hidden");
+        } catch {
+          /* ignore */
+        }
+        return !v;
+      });
+    } else {
+      setOpen(true);
+    }
+  }
 
   // Ctrl+K (or Cmd+K): focus the search box (opens the drawer on a phone).
   useEffect(() => {
     function key(e: KeyboardEvent) {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        if (window.matchMedia("(min-width: 1024px)").matches) desktopInput.current?.focus();
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          setCollapsed(false);
+          setTimeout(() => desktopInput.current?.focus(), 60);
+        }
         else {
           setOpen(true);
           setTimeout(() => drawerInput.current?.focus(), 60);
@@ -115,10 +142,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-3 px-4 sm:px-6">
           <button
             type="button"
-            className="icon-btn lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
+            className="icon-btn"
+            aria-label="Show or hide the menu"
+            aria-expanded={open || !collapsed}
+            onClick={toggleMenu}
           >
             <Icon name="menu" />
           </button>
@@ -133,7 +160,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Phone and tablet: the menu slides in over the page. */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+      <div className={`fixed inset-0 z-50 md:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
         <div
           className={`absolute inset-0 bg-black/40 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0"}`}
           onClick={() => setOpen(false)}
@@ -156,9 +183,19 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
         </aside>
       </div>
 
-      <div className="mx-auto grid max-w-[1280px] lg:grid-cols-[272px_minmax(0,1fr)] xl:grid-cols-[272px_minmax(0,1fr)_240px]">
-        {/* Computer: the menu stays fixed on the left. */}
-        <aside className="hidden lg:sticky lg:top-16 lg:block lg:h-[calc(100vh-4rem)] lg:overflow-y-auto lg:px-4 lg:py-6">
+      <div
+        className={`mx-auto grid max-w-[1280px] ${
+          collapsed
+            ? "md:grid-cols-[minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_240px]"
+            : "md:grid-cols-[250px_minmax(0,1fr)] xl:grid-cols-[272px_minmax(0,1fr)_240px]"
+        }`}
+      >
+        {/* Computer: the menu stays on the left. The three-lines button hides and shows it. */}
+        <aside
+          className={`${
+            collapsed ? "hidden" : "hidden md:sticky md:top-16 md:block md:h-[calc(100vh-4rem)] md:overflow-y-auto md:px-4 md:py-6"
+          }`}
+        >
           <Menu path={path} inputRef={desktopInput} />
         </aside>
 

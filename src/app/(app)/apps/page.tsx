@@ -9,9 +9,9 @@ import type { TKey } from "@/lib/dictionary";
 
 // Installers are built and published by the noor-ul-ilm-desktop repository (GitHub Releases).
 // Set a link to "" to show "Coming soon" instead of a download button.
-const RELEASES = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-desktop/releases/latest/download";
-const WINDOWS_URL = `${RELEASES}/Noor-ul-Ilm-Setup.exe`;
-const ANDROID_URL = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-mobile/releases/latest/download/Noor-ul-Ilm.apk";
+const RELEASES = "";
+const WINDOWS_URL = "Coming Soon";
+const ANDROID_URL = "Coming Soon";
 
 type Platform = {
   id: string;

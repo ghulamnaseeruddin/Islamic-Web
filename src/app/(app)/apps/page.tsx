@@ -13,6 +13,7 @@ const RELEASES = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-desktop/relea
 const WINDOWS_URL = `${RELEASES}/Noor-ul-Ilm-Setup.exe`;
 const LINUX_URL = `${RELEASES}/Noor-ul-Ilm.AppImage`;
 const LINUX_DEB_URL = `${RELEASES}/Noor-ul-Ilm.deb`;
+const ANDROID_URL = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-mobile/releases/latest/download/Noor-ul-Ilm.apk";
 const MAC_ARM_URL = `${RELEASES}/Noor-ul-Ilm-mac-arm64.dmg`;
 const MAC_INTEL_URL = `${RELEASES}/Noor-ul-Ilm-mac-x64.dmg`;
 
@@ -39,8 +40,8 @@ const PLATFORMS: Platform[] = [
     extraUrl: LINUX_DEB_URL,
     extraLabel: "apps.debLink",
   },
-  { id: "android", icon: "phone", name: "apps.android", body: "apps.androidBody" },
-  { id: "iphone", icon: "phone", name: "apps.iphone", body: "apps.iphoneBody" },
+  { id: "android", icon: "phone", name: "apps.android", body: "apps.androidBody", url: ANDROID_URL, label: "apps.downloadAndroid" },
+  { id: "iphone", icon: "phone", name: "apps.iphone", body: "apps.iphoneBody", url: "#iphone", label: "apps.iphoneHow" },
   {
     id: "mac",
     icon: "monitor",
@@ -90,8 +91,8 @@ export default function AppsPage() {
               </div>
               {ready ? (
                 <>
-                  <a href={p.url} className="btn btn-primary w-full justify-center" download>
-                    <Icon name="download" className="h-4 w-4" />
+                  <a href={p.url} className="btn btn-primary w-full justify-center" {...(p.url?.startsWith("#") ? {} : { download: true })}>
+                    <Icon name={p.url?.startsWith("#") ? "phone" : "download"} className="h-4 w-4" />
                     {p.label ? t(p.label) : ""}
                   </a>
                   {p.extraUrl && p.extraLabel && (
@@ -116,6 +117,23 @@ export default function AppsPage() {
           <li>{t("apps.step1")}</li>
           <li>{t("apps.step2")}</li>
           <li>{t("apps.step3")}</li>
+        </ol>
+      </section>
+
+      <section className="card mt-3">
+        <h2 className="font-medium">{t("apps.helpAndroid")}</h2>
+        <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
+          <li>{t("apps.astep1")}</li>
+          <li>{t("apps.astep2")}</li>
+        </ul>
+      </section>
+
+      <section id="iphone" className="card mt-3 scroll-mt-20">
+        <h2 className="font-medium">{t("apps.helpIphone")}</h2>
+        <ol className="mt-2 list-decimal space-y-1.5 ps-5 text-sm text-muted">
+          <li>{t("apps.istep1")}</li>
+          <li>{t("apps.istep2")}</li>
+          <li>{t("apps.istep3")}</li>
         </ol>
       </section>
 

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 type Item = { id: string; text: string; level: number };
 
 /** "On this page": lists the headings of the article and highlights the one you are reading. */
-export function Toc() {
+export function Toc({ hideTitle = false }: { hideTitle?: boolean }) {
   const path = usePathname();
   const [items, setItems] = useState<Item[]>([]);
   const [active, setActive] = useState("");
@@ -30,7 +30,7 @@ export function Toc() {
   if (items.length === 0) return null;
   return (
     <nav aria-label="On this page" className="text-sm">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted">On this page</p>
+      {!hideTitle && <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted">On this page</p>}
       <ul className="border-s border-line">
         {items.map((i) => (
           <li key={i.id}>

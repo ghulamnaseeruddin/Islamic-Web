@@ -142,6 +142,7 @@ export default function AppsPage() {
         <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
           <li>{t("apps.mstep1")}</li>
           <li>{t("apps.mstep2")}</li>
+          <li>{t("apps.mstep3")}</li>
         </ul>
       </section>
 

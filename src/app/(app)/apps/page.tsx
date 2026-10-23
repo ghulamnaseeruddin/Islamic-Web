@@ -7,11 +7,10 @@ import { useI18n } from "@/lib/i18n";
 import { useInApp } from "@/lib/useInApp";
 import type { TKey } from "@/lib/dictionary";
 
-// Installers are built and published by the noor-ul-ilm-desktop repository (GitHub Releases).
-// Set a link to "" to show "Coming soon" instead of a download button.
-const RELEASES = "";
-const WINDOWS_URL = "Coming Soon";
-const ANDROID_URL = "Coming Soon";
+// The native Windows and Android apps are being built. While a link is "", the card shows
+// "Coming soon". When an app is published, put its download link here.
+const WINDOWS_URL = "";
+const ANDROID_URL = "";
 
 type Platform = {
   id: string;
@@ -85,23 +84,6 @@ export default function AppsPage() {
           );
         })}
       </ul>
-
-      <section className="card mt-5">
-        <h2 className="font-medium">{t("apps.help")}</h2>
-        <ol className="mt-2 list-decimal space-y-1.5 ps-5 text-sm text-muted">
-          <li>{t("apps.step1")}</li>
-          <li>{t("apps.step2")}</li>
-          <li>{t("apps.step3")}</li>
-        </ol>
-      </section>
-
-      <section className="card mt-3">
-        <h2 className="font-medium">{t("apps.helpAndroid")}</h2>
-        <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
-          <li>{t("apps.astep1")}</li>
-          <li>{t("apps.astep2")}</li>
-        </ul>
-      </section>
     </div>
   );
 }

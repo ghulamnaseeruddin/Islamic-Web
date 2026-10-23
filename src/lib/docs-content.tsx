@@ -55,37 +55,29 @@ export const DOC_BODIES: Record<string, ReactNode> = {
         On the sign-in page tap <b>Forgot password?</b>, enter your email and I&apos;ll send a reset link. For safety the page says the same thing
         whether or not that email has an account.
       </p>
-      <h2 id="apps">Signing in inside the apps</h2>
-      <p>
-        In the Windows app, <b>Continue with Google</b> opens your normal browser to finish signing in, then sends you back to
-        the app. Email and password work as usual.
-      </p>
     </>
   ),
 
   install: (
     <>
       <p>
-        Every version of Noor ul Ilm shows the same website, so when I update the website, your app is up to date too. There&apos;s nothing to
-        re-download. Open <b>Download apps</b> on the website to get the files.
+        I&apos;m building native apps for <b>Windows</b> and <b>Android</b>. They aren&apos;t ready yet, so the <b>Download apps</b> page on the
+        website shows &quot;Coming soon&quot; for both. Until then, the website works in any browser on your phone or computer.
       </p>
       <DocTable
-        head={["Device", "How to get it"]}
+        head={["Device", "Status"]}
         rows={[
-          ["Windows", "Download the installer from the Download apps page and open it."],
-          ["Android", "Download the .apk file on your phone and install it."],
+          ["Windows", "Native app coming soon."],
+          ["Android", "Native app coming soon."],
         ]}
       />
-      <h2 id="windows">Windows warning</h2>
+      <h2 id="now">Use it like an app today</h2>
       <p>
-        The app isn&apos;t signed yet, so Windows may show a blue &quot;Windows protected your PC&quot; screen. Click <b>More info</b>, then{" "}
-        <b>Run anyway</b>. Signing costs money every year, and I&apos;d rather keep the app free for now.
+        In Chrome or Edge, open Noor ul Ilm and click <b>Install</b> in the address bar. On an Android phone, use the browser menu and choose{" "}
+        <b>Add to Home screen</b>. On an iPhone, open the site in Safari, tap Share, then <b>Add to Home Screen</b>. You get an icon that opens
+        the site full screen.
       </p>
-      <h2 id="android">Android</h2>
-      <p>
-        After you tap the file, Android may ask you to allow installs from this source. Allow it for this one install. You may see a short
-        &quot;Running in Chrome&quot; message when the app opens. That comes from Chrome, not from me.
-      </p>
+      <p>I&apos;ll announce the native apps on the Download apps page when they&apos;re ready.</p>
     </>
   ),
 
@@ -170,7 +162,7 @@ export const DOC_BODIES: Record<string, ReactNode> = {
         <li>It&apos;s an AI, so it can make mistakes. Always read the verses shown.</li>
         <li>It isn&apos;t a fatwa. For a ruling, ask a qualified scholar.</li>
         <li>It needs internet.</li>
-        <li>The microphone works in Chrome, Edge and Safari, not in Firefox. In the Windows app the microphone button may not work, so use the website in Chrome or Edge if you want to speak.</li>
+        <li>The microphone works in Chrome, Edge and Safari, not in Firefox.</li>
         <li>Your question and a few verses are sent to an AI provider (Groq or Google Gemini) to write the answer. Please don&apos;t type private details.</li>
       </ul>
     </>

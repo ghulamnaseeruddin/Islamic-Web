@@ -57,7 +57,7 @@ export const DOC_BODIES: Record<string, ReactNode> = {
       </p>
       <h2 id="apps">Signing in inside the apps</h2>
       <p>
-        In the Windows, Mac and Linux apps, <b>Continue with Google</b> opens your normal browser to finish signing in, then sends you back to
+        In the Windows app, <b>Continue with Google</b> opens your normal browser to finish signing in, then sends you back to
         the app. Email and password work as usual.
       </p>
     </>
@@ -73,10 +73,7 @@ export const DOC_BODIES: Record<string, ReactNode> = {
         head={["Device", "How to get it"]}
         rows={[
           ["Windows", "Download the installer from the Download apps page and open it."],
-          ["Mac", "Download the .dmg for your chip (Apple chip or Intel) and drag the app into Applications."],
-          ["Linux", "Download the AppImage, or the .deb file for Ubuntu and Debian."],
           ["Android", "Download the .apk file on your phone and install it."],
-          ["iPhone and iPad", "Open the website in Safari, tap Share, then Add to Home Screen."],
         ]}
       />
       <h2 id="windows">Windows warning</h2>
@@ -84,21 +81,10 @@ export const DOC_BODIES: Record<string, ReactNode> = {
         The app isn&apos;t signed yet, so Windows may show a blue &quot;Windows protected your PC&quot; screen. Click <b>More info</b>, then{" "}
         <b>Run anyway</b>. Signing costs money every year, and I&apos;d rather keep the app free for now.
       </p>
-      <h2 id="mac">Mac warning</h2>
-      <p>
-        Apple shows a warning for apps that aren&apos;t signed with a paid Apple account. Right-click the app and choose <b>Open</b>. On newer
-        macOS, open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>. If you&apos;d rather skip all this, open the website
-        in Chrome and click <b>Install</b> in the address bar, or in Safari choose <b>File → Add to Dock</b>.
-      </p>
       <h2 id="android">Android</h2>
       <p>
         After you tap the file, Android may ask you to allow installs from this source. Allow it for this one install. You may see a short
         &quot;Running in Chrome&quot; message when the app opens. That comes from Chrome, not from me.
-      </p>
-      <h2 id="iphone">iPhone</h2>
-      <p>
-        Apple doesn&apos;t let websites hand out app files, and the App Store needs a paid developer account. Adding the site to your Home Screen
-        gives you an icon that opens full screen, which is the closest thing for now.
       </p>
     </>
   ),
@@ -184,7 +170,7 @@ export const DOC_BODIES: Record<string, ReactNode> = {
         <li>It&apos;s an AI, so it can make mistakes. Always read the verses shown.</li>
         <li>It isn&apos;t a fatwa. For a ruling, ask a qualified scholar.</li>
         <li>It needs internet.</li>
-        <li>The microphone works in Chrome, Edge and Safari, not in Firefox. In the Windows, Mac and Linux apps the microphone button may not work, so use the website in Chrome or Edge if you want to speak.</li>
+        <li>The microphone works in Chrome, Edge and Safari, not in Firefox. In the Windows app the microphone button may not work, so use the website in Chrome or Edge if you want to speak.</li>
         <li>Your question and a few verses are sent to an AI provider (Groq or Google Gemini) to write the answer. Please don&apos;t type private details.</li>
       </ul>
     </>

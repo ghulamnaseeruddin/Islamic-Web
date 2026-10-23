@@ -11,11 +11,7 @@ import type { TKey } from "@/lib/dictionary";
 // Set a link to "" to show "Coming soon" instead of a download button.
 const RELEASES = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-desktop/releases/latest/download";
 const WINDOWS_URL = `${RELEASES}/Noor-ul-Ilm-Setup.exe`;
-const LINUX_URL = `${RELEASES}/Noor-ul-Ilm.AppImage`;
-const LINUX_DEB_URL = `${RELEASES}/Noor-ul-Ilm.deb`;
 const ANDROID_URL = "https://github.com/ghulamnaseeruddin/noor-ul-ilm-mobile/releases/latest/download/Noor-ul-Ilm.apk";
-const MAC_ARM_URL = `${RELEASES}/Noor-ul-Ilm-mac-arm64.dmg`;
-const MAC_INTEL_URL = `${RELEASES}/Noor-ul-Ilm-mac-x64.dmg`;
 
 type Platform = {
   id: string;
@@ -30,28 +26,7 @@ type Platform = {
 
 const PLATFORMS: Platform[] = [
   { id: "windows", icon: "monitor", name: "apps.windows", body: "apps.windowsBody", url: WINDOWS_URL, label: "apps.download" },
-  {
-    id: "linux",
-    icon: "monitor",
-    name: "apps.linux",
-    body: "apps.linuxBody",
-    url: LINUX_URL,
-    label: "apps.downloadLinux",
-    extraUrl: LINUX_DEB_URL,
-    extraLabel: "apps.debLink",
-  },
   { id: "android", icon: "phone", name: "apps.android", body: "apps.androidBody", url: ANDROID_URL, label: "apps.downloadAndroid" },
-  { id: "iphone", icon: "phone", name: "apps.iphone", body: "apps.iphoneBody", url: "#iphone", label: "apps.iphoneHow" },
-  {
-    id: "mac",
-    icon: "monitor",
-    name: "apps.mac",
-    body: "apps.macBody",
-    url: MAC_ARM_URL,
-    label: "apps.downloadMac",
-    extraUrl: MAC_INTEL_URL,
-    extraLabel: "apps.macIntel",
-  },
 ];
 
 export default function AppsPage() {
@@ -125,32 +100,6 @@ export default function AppsPage() {
         <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
           <li>{t("apps.astep1")}</li>
           <li>{t("apps.astep2")}</li>
-        </ul>
-      </section>
-
-      <section id="iphone" className="card mt-3 scroll-mt-20">
-        <h2 className="font-medium">{t("apps.helpIphone")}</h2>
-        <ol className="mt-2 list-decimal space-y-1.5 ps-5 text-sm text-muted">
-          <li>{t("apps.istep1")}</li>
-          <li>{t("apps.istep2")}</li>
-          <li>{t("apps.istep3")}</li>
-        </ol>
-      </section>
-
-      <section className="card mt-3">
-        <h2 className="font-medium">{t("apps.helpMac")}</h2>
-        <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
-          <li>{t("apps.mstep1")}</li>
-          <li>{t("apps.mstep2")}</li>
-          <li>{t("apps.mstep3")}</li>
-        </ul>
-      </section>
-
-      <section className="card mt-3">
-        <h2 className="font-medium">{t("apps.helpLinux")}</h2>
-        <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm text-muted">
-          <li>{t("apps.lstep1")}</li>
-          <li>{t("apps.lstep2")}</li>
         </ul>
       </section>
     </div>

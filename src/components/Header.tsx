@@ -59,6 +59,12 @@ export function Header({ user }: { user: AppUser }) {
               {t("nav.downloadApps")}
             </Link>
           )}
+          <Link
+            href="/docs"
+            className="rounded-full px-3 py-1.5 text-sm text-muted transition hover:text-ink"
+          >
+            Docs
+          </Link>
           <Link href="/search" className="icon-btn" aria-label={t("nav.search")}>
             <Icon name="search" />
           </Link>

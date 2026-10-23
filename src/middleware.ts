@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
 // Pages anyone can open without logging in. Everything else needs a login.
-const PUBLIC_PATHS = ["/login", "/signup", "/forgot-password", "/auth/callback", "/privacy", "/terms"];
+const PUBLIC_PATHS = ["/login", "/signup", "/forgot-password", "/auth/callback", "/privacy", "/terms", "/docs"];
 // If you are already logged in, these pages send you to the home page.
 const GUEST_ONLY = ["/login", "/signup", "/forgot-password"];
 

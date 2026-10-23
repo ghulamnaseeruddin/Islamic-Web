@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { useI18n } from "@/lib/i18n";
+import { useInApp } from "@/lib/useInApp";
 import type { TKey } from "@/lib/dictionary";
 
 const ITEMS: { href: string; icon: IconName; title: TKey; body: TKey }[] = [
@@ -24,12 +25,14 @@ const ITEMS: { href: string; icon: IconName; title: TKey; body: TKey }[] = [
 
 export default function MorePage() {
   const { t } = useI18n();
+  const inApp = useInApp();
+  const items = inApp === false ? ITEMS : ITEMS.filter((i) => i.href !== "/apps");
   return (
     <div>
       <h1 className="text-2xl font-semibold">{t("nav.more")}</h1>
       <p className="mt-1 text-sm text-muted">{t("more.subtitle")}</p>
       <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-        {ITEMS.map((i) => (
+        {items.map((i) => (
           <li key={i.href}>
             <Link href={i.href} className="card flex h-full items-start gap-3 hover:bg-soft">
               <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft text-brand">

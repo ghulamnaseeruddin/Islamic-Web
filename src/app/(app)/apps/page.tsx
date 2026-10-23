@@ -1,7 +1,10 @@
 "use client";
 
 import { Icon, type IconName } from "@/components/icons";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
+import { useInApp } from "@/lib/useInApp";
 import type { TKey } from "@/lib/dictionary";
 
 // Installers are built and published by the noor-ul-ilm-desktop repository (GitHub Releases).
@@ -52,6 +55,13 @@ const PLATFORMS: Platform[] = [
 
 export default function AppsPage() {
   const { t } = useI18n();
+  const inApp = useInApp();
+  const router = useRouter();
+  // Inside an installed app there is nothing to download: go home.
+  useEffect(() => {
+    if (inApp) router.replace("/");
+  }, [inApp, router]);
+  if (inApp !== false) return null;
   return (
     <div>
       <h1 className="text-2xl font-semibold">{t("apps.title")}</h1>

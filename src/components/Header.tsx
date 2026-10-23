@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/icons";
 import { Logo } from "@/components/Logo";
 import { ProfileButton } from "@/components/ProfileButton";
 import { useI18n } from "@/lib/i18n";
+import { useInApp } from "@/lib/useInApp";
 import type { TKey } from "@/lib/dictionary";
 import type { AppUser } from "@/components/AppShell";
 
@@ -27,6 +28,7 @@ export function isActive(path: string, href: string) {
 export function Header({ user }: { user: AppUser }) {
   const { t } = useI18n();
   const path = usePathname();
+  const inApp = useInApp();
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
@@ -48,13 +50,15 @@ export function Header({ user }: { user: AppUser }) {
           ))}
         </nav>
         <div className="ms-auto flex items-center gap-1.5">
-          <Link
-            href="/apps"
-            className={`btn btn-primary me-1 hidden !px-3 !py-1.5 text-sm lg:inline-flex ${isActive(path, "/apps") ? "ring-2 ring-brand/30" : ""}`}
-          >
-            <Icon name="download" className="h-4 w-4" />
-            {t("nav.downloadApps")}
-          </Link>
+          {inApp === false && (
+            <Link
+              href="/apps"
+              className={`btn btn-primary me-1 hidden !px-3 !py-1.5 text-sm lg:inline-flex ${isActive(path, "/apps") ? "ring-2 ring-brand/30" : ""}`}
+            >
+              <Icon name="download" className="h-4 w-4" />
+              {t("nav.downloadApps")}
+            </Link>
+          )}
           <Link href="/search" className="icon-btn" aria-label={t("nav.search")}>
             <Icon name="search" />
           </Link>
